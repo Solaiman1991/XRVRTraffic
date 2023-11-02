@@ -1,2 +1,2 @@
 # XRVRTraffic
-course assignment VR
+Course assignment VR
