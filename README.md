@@ -1,2 +1,2 @@
 # XRVRTraffic
-Course assignment VR
+Course assignment VR - Driver License Training
