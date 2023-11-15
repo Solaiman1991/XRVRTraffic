@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+
     public Wheels Wheels;
     public float ThrowtleInput;
     private float SteeringInput;
@@ -14,13 +15,20 @@ public class CarController : MonoBehaviour
     private float slipAngle;
     public AnimationCurve steeringCurve;
     public float speed;
-    public float MySpeed;
     private Rigidbody CarRb;
+    public float gripMultiplier = 2f;
+    public float tractionControlMultiplier = 0.8f;
+
+    public float SteeringMultiplier = 0.5f;
+    public float centerOfMassHeight = 0.5f; // Adjust this value to set the center of mass height.
 
     // Start is called before the first frame update
     void Start()
     {
         CarRb = gameObject.GetComponent<Rigidbody>();
+        
+        CarRb.centerOfMass = new Vector3(0, -centerOfMassHeight, 0);
+
     }
 
 
@@ -30,6 +38,11 @@ public class CarController : MonoBehaviour
         CheckInput();
         UpdateAllWheelsRotation();
         ApplyInput();
+        TractionControl();
+    }
+
+    void TractionControl()
+    {
     }
 
     void CheckInput()
@@ -38,14 +51,10 @@ public class CarController : MonoBehaviour
         SteeringInput = Input.GetAxis("Horizontal");
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            BreakInput = 1;
-        }
-        else
-        {
-            BreakInput = 0;
+            ThrowtleInput = -1;
         }
     }
-
+    
     void UpdateAllWheelsRotation()
     {
         Wheels.ApplyToAll(UpdateSingleWheelRotation);
@@ -61,26 +70,34 @@ public class CarController : MonoBehaviour
 
     void ApplyInput()
     {
-        Wheels.ApplyToFrontWheels(TorqueOnWheel);
+        if (ThrowtleInput > 0)
+        {
+            Wheels.ApplyToFrontWheels(TorqueOnWheel);
+        }
+        else
+        {
+            Wheels.ApplyToAll(BreakTorque);
+        }
         Wheels.ApplyToFrontWheels(ApplySteering);
-        Wheels.ApplyToFrontWheels(BreakTorque);
     }
 
     void ApplySteering(Wheel wheel)
     {
-        float steeringAngle = SteeringInput * steeringCurve.Evaluate(speed);
+        float steeringAngle = SteeringInput * steeringCurve.Evaluate(speed) * SteeringMultiplier;
         wheel.Collider.steerAngle = steeringAngle;
     }
 
     void TorqueOnWheel(Wheel wheel)
     {
-        wheel.Collider.motorTorque = Power * ThrowtleInput * MySpeed;
+        wheel.Collider.motorTorque = Power * ThrowtleInput;
     }
 
     void BreakTorque(Wheel wheel)
     {
-        wheel.Collider.brakeTorque = BreakPower * BreakInput * MySpeed;
+        wheel.Collider.brakeTorque = BreakPower * (ThrowtleInput * -1);
     }
+
+
 }
 
 [Serializable]
