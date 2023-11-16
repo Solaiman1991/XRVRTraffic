@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wheels:
+    DriveType: 0
     FRWheel:
       Collider: {fileID: 6940765956303426260}
       Mesh: {fileID: 7328274813955103027}
@@ -386,8 +387,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speed: 0
-  gripMultiplier: 2
-  tractionControlMultiplier: 0.8
   SteeringMultiplier: 1
   centerOfMassHeight: 0
 --- !u!1 &7343097556411014579 stripped
