@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Car.Wheel;
 
 
@@ -9,7 +8,6 @@ public class DrivingController : MonoBehaviour
 
     public Transform flDiscBrake, frDiscBrake;
 
-    public Gear CurrentGear = Gear.Park;
     public Transform SteeringWheel;
     public float centerOfMassHeight = 0.5f;
 

@@ -6,8 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/UTS_PRO/Scenes/Standard_Crossroad.unity
-    guid: 70bae495e1e414f4c8fed3822d3291eb
-  - enabled: 1
-    path: Assets/UTS_PRO/Scenes/Truck_control_Crossroad.unity
-    guid: 2dcdf72e467d74d4da6cefa8f537c251
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bdc8dd1c9ac0bf34bbbd9c40f89accf2,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: e20cf2d77fe3fe14b917528120b6f653,
+      type: 2}
