@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 public class FPD : MonoBehaviour
 {
@@ -20,14 +17,15 @@ public class FPD : MonoBehaviour
     public float X;
     void FixedUpdate()
     {
-        distance -= Input.GetAxis("Mouse ScrollWheel") * mmSpeed;
-        distance = Mathf.Clamp(distance, minDistance, maxDistance);
+       // distance -= Input.GetAxis("Mouse ScrollWheel") * mmSpeed;
+        //distance = Mathf.Clamp(distance, minDistance, maxDistance);
         if (distance != camera.fieldOfView) camera.fieldOfView = distance;
 
-        float mouseX = Input.GetAxis("Mouse X");
+/*        float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
         if (mouseX != 0 || mouseY != 0)
             RotateView(mouseX, mouseY);
+  */
     }
 
     public float rotateSpeed = 2f;

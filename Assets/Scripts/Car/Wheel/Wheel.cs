@@ -24,11 +24,5 @@ namespace Car.Wheel
             Collider.brakeTorque = power * throttle;
         }
     }
-
-    [Serializable]
-    public enum DriveType
-    {
-        FrontWheelDrive,
-        AllWheelDrive
-    }
+    
 }

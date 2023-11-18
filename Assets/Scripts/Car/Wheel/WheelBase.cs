@@ -1,131 +1,89 @@
-﻿using System;
+using System;
+using Car.Gear;
+using Car.Wheel;
 using UnityEngine;
 
-namespace Car.Wheel
+public class WheelBase : MonoBehaviour
 {
-    [Serializable]
-    public class WheelBase
+    public DriveType DriveType;
+    public Wheel FRWheel;
+    public Wheel FLWheel;
+    public Wheel RRWheel;
+    public Wheel RLWheel;
+
+    public float motorTorque = 1600;
+    public float brakeTorque = 2000;
+    public AnimationCurve steeringCurve;
+
+    private AutomaticGearBox _gearBox;
+
+    private void Start()
     {
+        _gearBox = GetComponent<AutomaticGearBox>();
+    }
+    
+    public void ApplyToAll(Action<Wheel> action)
+    {
+        action(FRWheel);
+        action(FLWheel);
+        action(RRWheel);
+        action(RLWheel);
+    }
 
-        public DriveType DriveType;
-        public Wheel FRWheel;
-        public Wheel FLWheel;
-        public Wheel RRWheel;
-        public Wheel RLWheel;
+    public void ApplyToFrontWheels(Action<Wheel> action)
+    {
+        action(FRWheel);
+        action(FLWheel);
+    }
 
-        public float motorTorque = 1600; 
-        public float brakeTorque = 2000;
-        public AnimationCurve steeringCurve;
+    public void ApplyToRearWheels(Action<Wheel> action)
+    {
+        action(RRWheel);
+        action(RLWheel);
+    }
 
-        public int CurrentGearIndex;
-        public Gear[] Gears = new[] { Gear.Park, Gear.Reverse, Gear.Neutral, Gear.Drive };
+    public void ApplyThrottle(float throttle)
+    {
+        var currentGear = _gearBox.GetCurrentGear();
 
-        public void ApplyToAll(Action<Wheel> action)
+        switch (currentGear)
         {
-            action(FRWheel);
-            action(FLWheel);
-            action(RRWheel);
-            action(RLWheel);
+            case Gear.Park:
+                return;
+            case Gear.Neutral:
+                return;
+            case Gear.Reverse:
+                throttle *= -1;
+                break;
+            case Gear.Drive:
+                break;
         }
 
-        public void ApplyToFrontWheels(Action<Wheel> action)
-        {
-            action(FRWheel);
-            action(FLWheel);
-        }
+        Action<Wheel> torqueAction = wheel => wheel.ApplyTorque(motorTorque, throttle);
 
-        public void ApplyToRearWheels(Action<Wheel> action)
+        switch (DriveType)
         {
-            action(RRWheel);
-            action(RLWheel);
-        }
-
-        private void ApplyThrottle(float throttle)
-        {
-            Action<Wheel> torqueAction = wheel => wheel.ApplyTorque(motorTorque, throttle);
-            ApplyDriveTypeBehavior(torqueAction);
-        }
-        
-        private void ApplyDriveTypeBehavior(Action<Wheel> action)
-        {
-            switch (DriveType)
-            {
-                case DriveType.FrontWheelDrive:
-                    ApplyToFrontWheels(action);
-                    break;
-                case DriveType.AllWheelDrive:
-                    ApplyToAll(action);
-                    break;
-            }
-        }
-        
-        
-        private void ApplyParkingBrake()
-        {
-            float parkingBrakeTorque = 10000; // Adjust this value as needed
-            Action<Wheel> brakeAction = wheel => wheel.ApplyBreak(parkingBrakeTorque, 1f);
-            ApplyToAll(brakeAction);
-        }
-
-        public void ApplyBreak(float throttleInput)
-        {
-            Action<Wheel> brakeAction = wheel => wheel.ApplyBreak(brakeTorque, throttleInput);
-            ApplyToAll(brakeAction);
-        }
-
-        public void ApplySteering(float steeringInput, float speed)
-        {
-            float steeringAngle = steeringInput * steeringCurve.Evaluate(speed);
-            Action<Wheel> steeringAction = wheel => wheel.ApplySteer(steeringAngle);
-            ApplyToFrontWheels(steeringAction);
-        }
-        
-        public void UpdateWheelBehavior(float throttle)
-        {
-            var currentGear = Gears[CurrentGearIndex];
-
-            switch (currentGear)
-            {
-                case Gear.Park:
-                    ApplyParkingBrake();
-                    break;
-                case Gear.Neutral:
-                   
-                    ApplyNeutralBehavior(throttle);
-                    break;
-                case Gear.Reverse:
-                    ApplyThrottle(-throttle); 
-                    break;
-                case Gear.Drive:
-                    ApplyThrottle(throttle);
-                    break;
-            }
-        }
-        
-        private void ApplyNeutralBehavior(float throttle)
-        {
-            // Implement behavior for Neutral gear
-         
-        }
-        public void UpShift()
-        {
-            if (CurrentGearIndex < Gears.Length - 1)
-            {
-                CurrentGearIndex++;
-            }
-        }
-
-        public void DownShift()
-        {
-            if (CurrentGearIndex > 0)
-            {
-                CurrentGearIndex--;
-            }
+            case DriveType.FrontWheelDrive:
+                ApplyToFrontWheels(torqueAction);
+                break;
+            case DriveType.AllWheelDrive:
+                ApplyToAll(torqueAction);
+                break;
         }
     }
-}
 
-public enum Gear
-{
-    Park, Neutral, Drive, Reverse
+    public void ApplyBreak(float throttleInput)
+    {
+        Action<Wheel> torqueAction = wheel => wheel.ApplyBreak(brakeTorque, throttleInput);
+
+        ApplyToAll(torqueAction);
+    }
+
+    public void ApplySteering(float steeringInput, float speed)
+    {
+        float steeringAngle = steeringInput * steeringCurve.Evaluate(speed);
+        Action<Wheel> steeringAction = wheel => wheel.ApplySteer(steeringAngle);
+
+        ApplyToFrontWheels(steeringAction);
+    }
 }

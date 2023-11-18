@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class SpeedLimitSignController : MonoBehaviour
 {
-    public DrivingController carController; 
+    public WheelBaseManager WheelBaseManager;
     public GameObject speedLimitSign; 
     private const float SpeedThreshold = 32f; 
     private Coroutine blinkingCoroutine;
@@ -19,13 +18,13 @@ public class SpeedLimitSignController : MonoBehaviour
 
     void Update()
     {
-        if (carController != null && speedLimitSign != null)
+        if (WheelBaseManager != null && speedLimitSign != null)
         {
-            if (carController.speed > SpeedThreshold && blinkingCoroutine == null)
+            if (WheelBaseManager.speed > SpeedThreshold && blinkingCoroutine == null)
             {
                 blinkingCoroutine = StartCoroutine(BlinkSpeedLimitSign());
             }
-            else if (carController.speed <= SpeedThreshold && blinkingCoroutine != null)
+            else if (WheelBaseManager.speed <= SpeedThreshold && blinkingCoroutine != null)
             {
                 StopCoroutine(blinkingCoroutine);
                 blinkingCoroutine = null;

@@ -19,13 +19,7 @@ public class StopLine : MonoBehaviour
             {
                 failureCount++;
                 resultText.text = "Traffic Violations: " + failureCount;
-                Debug.Log("Stop line crossed at high speed. Fail count: " + failureCount);
             }
-            else
-            {
-                Debug.Log("Stop line crossed at safe speed.");
-            }
-            Debug.Log("Triggered with: " + other.gameObject.name);
         }
     }
 
