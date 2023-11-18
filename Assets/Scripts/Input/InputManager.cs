@@ -14,6 +14,18 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool GearDown { get; private set; }
     public bool StartEngine { get; private set; }
     
+    public bool LeftSign { get; private set; }
+    public bool RightSign { get; private set; }
+    public bool HavariSign { get; private set; }
+    
+    private ArrowBlinker arrowBlinker; 
+
+    
+    private void Start()
+    {
+        arrowBlinker = GetComponent<ArrowBlinker>(); 
+    }
+    
     void LateUpdate()
     {
         GearUp = false;
@@ -50,9 +62,42 @@ public class InputManager : MonoBehaviour, IInputManager
     {
         StartEngine = true;
     }
+    
+    void OnLeftSign(InputValue value)
+    {
+        LeftSign = !LeftSign; 
+        if (arrowBlinker != null)
+        {
+            arrowBlinker.ToggleLeftBlinking(); 
+        }
+    }
+    
+    void OnRightSign(InputValue value)
+    {
+        RightSign = !RightSign; 
+        if (arrowBlinker != null)
+        {
+            arrowBlinker.ToggleRightBlinking(); 
+        }
+    }
+    
+    void OnHavariSign(InputValue value)
+    {
+        HavariSign = !HavariSign; 
+        if (arrowBlinker != null)
+        {
+            arrowBlinker.ToggleHavariBlinking(); 
+        }
+    }
+    
+    
+    
+    
 
     // Reset gear and engine states at the end of each frame
 
+    
+    
     public float GetSteeringInput()
     {
         return SteeringValue;
@@ -76,6 +121,21 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool GetGearDownInput()
     {
         return GearDown;
+    }
+
+    public bool GetLeftSignInput()
+    {
+        return LeftSign;
+    }
+
+    public bool GetRightSignInput()
+    {
+        return RightSign;
+    }
+
+    public bool GetHavariSignInput()
+    {
+        return HavariSign;
     }
 
     public bool GetStartEngineInput()

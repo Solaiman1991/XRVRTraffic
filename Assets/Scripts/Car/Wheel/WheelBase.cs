@@ -20,6 +20,7 @@ public class WheelBase : MonoBehaviour
     private void Start()
     {
         _gearBox = GetComponent<AutomaticGearBox>();
+        
     }
     
     public void ApplyToAll(Action<Wheel> action)
@@ -41,37 +42,55 @@ public class WheelBase : MonoBehaviour
         action(RRWheel);
         action(RLWheel);
     }
+    
 
     public void ApplyThrottle(float throttle)
     {
         var currentGear = _gearBox.GetCurrentGear();
 
+        if (currentGear == Gear.Park)
+        {
+            ApplyParkingBrake();
+            return;
+        }
+
         switch (currentGear)
         {
-            case Gear.Park:
-                return;
             case Gear.Neutral:
-                return;
+                break;
             case Gear.Reverse:
-                throttle *= -1;
+                throttle *= -1; 
                 break;
             case Gear.Drive:
+                
                 break;
         }
 
         Action<Wheel> torqueAction = wheel => wheel.ApplyTorque(motorTorque, throttle);
+        ApplyDriveTypeBehavior(torqueAction);
+    }
 
+    private void ApplyDriveTypeBehavior(Action<Wheel> action)
+    {
         switch (DriveType)
         {
             case DriveType.FrontWheelDrive:
-                ApplyToFrontWheels(torqueAction);
+                ApplyToFrontWheels(action);
                 break;
             case DriveType.AllWheelDrive:
-                ApplyToAll(torqueAction);
+                ApplyToAll(action);
                 break;
         }
     }
 
+    private void ApplyParkingBrake()
+    {
+        float parkingBrakeTorque = 10000; 
+        Action<Wheel> brakeAction = wheel => wheel.ApplyBreak(parkingBrakeTorque, 1f);
+        ApplyToAll(brakeAction);
+    }
+
+   
     public void ApplyBreak(float throttleInput)
     {
         Action<Wheel> torqueAction = wheel => wheel.ApplyBreak(brakeTorque, throttleInput);
