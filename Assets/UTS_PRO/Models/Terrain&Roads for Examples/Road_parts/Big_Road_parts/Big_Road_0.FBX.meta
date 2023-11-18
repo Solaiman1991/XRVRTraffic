@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 3d5c2b00f077e334cb8bb4f6f6eea057
+timeCreated: 1450564751
+licenseType: Store
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Big_Road_0
+    100004: City004
+    100006: City005
+    100008: City006
+    100010: City009
+    100012: City010
+    100014: City011
+    100016: City012
+    100018: City013
+    100020: City014
+    100022: City015
+    100024: City016
+    100026: City3
+    100028: Big_Road_0 1
+    400000: //RootNode
+    400002: Big_Road_0
+    400004: City004
+    400006: City005
+    400008: City006
+    400010: City009
+    400012: City010
+    400014: City011
+    400016: City012
+    400018: City013
+    400020: City014
+    400022: City015
+    400024: City016
+    400026: City3
+    400028: Big_Road_0 1
+    2300000: //RootNode
+    2300002: Big_Road_0
+    2300004: City004
+    2300006: City005
+    2300008: City006
+    2300010: City009
+    2300012: City010
+    2300014: City011
+    2300016: City012
+    2300018: City013
+    2300020: City014
+    2300022: City015
+    2300024: City016
+    2300026: City3
+    2300028: Big_Road_0 1
+    3300000: //RootNode
+    3300002: Big_Road_0
+    3300004: City004
+    3300006: City005
+    3300008: City006
+    3300010: City009
+    3300012: City010
+    3300014: City011
+    3300016: City012
+    3300018: City013
+    3300020: City014
+    3300022: City015
+    3300024: City016
+    3300026: City3
+    3300028: Big_Road_0 1
+    4300000: Big_Road_0
+    4300002: City3
+    4300004: City004
+    4300006: City005
+    4300008: City006
+    4300010: City009
+    4300012: City010
+    4300014: City011
+    4300016: City012
+    4300018: City013
+    4300020: City014
+    4300022: City015
+    4300024: City016
+    6400000: Big_Road_0 1
+    6400002: City004
+    6400004: City005
+    6400006: City006
+    6400008: City009
+    6400010: City010
+    6400012: City011
+    6400014: City012
+    6400016: City013
+    6400018: City014
+    6400020: City015
+    6400022: City016
+    6400024: City3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

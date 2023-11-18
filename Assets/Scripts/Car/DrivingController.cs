@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Car.Wheel;
 
 
@@ -61,6 +60,9 @@ public class DrivingController : MonoBehaviour
         SteerWheel();
         // Rotate Wheels
         RotateWheel();
+        
+        Wheels.UpdateWheelBehavior(throttleInput);
+
     }
 
     private void applySteering(float steeringInput)
@@ -75,7 +77,7 @@ public class DrivingController : MonoBehaviour
 
     private void applyTorque(float throttleInput)
     {
-        Wheels.ApplyThrottle(throttleInput);
+        Wheels.UpdateWheelBehavior(throttleInput); 
     }
 
     private void RotateWheel()

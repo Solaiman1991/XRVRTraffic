@@ -6,6 +6,7 @@ namespace Car.Wheel
     [Serializable]
     public class WheelBase
     {
+
         public DriveType DriveType;
         public Wheel FRWheel;
         public Wheel FLWheel;
@@ -18,6 +19,7 @@ namespace Car.Wheel
 
         public int CurrentGearIndex;
         public Gear[] Gears = new[] { Gear.Park, Gear.Reverse, Gear.Neutral, Gear.Drive };
+
         public void ApplyToAll(Action<Wheel> action)
         {
             action(FRWheel);
@@ -38,75 +40,92 @@ namespace Car.Wheel
             action(RLWheel);
         }
 
-        public void ApplyThrottle(float throttle)
+        private void ApplyThrottle(float throttle)
         {
-            var currentGear = Gears[CurrentGearIndex];
-            switch (currentGear)
-            {
-                case Gear.Park:
-                    return;
-                case Gear.Neutral:
-                    return;
-                case Gear.Reverse:
-                    throttle *= -1;
-                    break;
-                case Gear.Drive:
-                    break;
-            }
-            
             Action<Wheel> torqueAction = wheel => wheel.ApplyTorque(motorTorque, throttle);
-
+            ApplyDriveTypeBehavior(torqueAction);
+        }
+        
+        private void ApplyDriveTypeBehavior(Action<Wheel> action)
+        {
             switch (DriveType)
             {
                 case DriveType.FrontWheelDrive:
-                    ApplyToFrontWheels(torqueAction);
+                    ApplyToFrontWheels(action);
                     break;
                 case DriveType.AllWheelDrive:
-                    ApplyToAll(torqueAction);
+                    ApplyToAll(action);
                     break;
             }
+        }
+        
+        
+        private void ApplyParkingBrake()
+        {
+            float parkingBrakeTorque = 10000; // Adjust this value as needed
+            Action<Wheel> brakeAction = wheel => wheel.ApplyBreak(parkingBrakeTorque, 1f);
+            ApplyToAll(brakeAction);
         }
 
         public void ApplyBreak(float throttleInput)
         {
-            Action<Wheel> torqueAction = wheel => wheel.ApplyBreak( brakeTorque, throttleInput);
-
-            ApplyToAll(torqueAction);
+            Action<Wheel> brakeAction = wheel => wheel.ApplyBreak(brakeTorque, throttleInput);
+            ApplyToAll(brakeAction);
         }
 
         public void ApplySteering(float steeringInput, float speed)
         {
             float steeringAngle = steeringInput * steeringCurve.Evaluate(speed);
             Action<Wheel> steeringAction = wheel => wheel.ApplySteer(steeringAngle);
-
             ApplyToFrontWheels(steeringAction);
         }
+        
+        public void UpdateWheelBehavior(float throttle)
+        {
+            var currentGear = Gears[CurrentGearIndex];
 
+            switch (currentGear)
+            {
+                case Gear.Park:
+                    ApplyParkingBrake();
+                    break;
+                case Gear.Neutral:
+                   
+                    ApplyNeutralBehavior(throttle);
+                    break;
+                case Gear.Reverse:
+                    ApplyThrottle(-throttle); 
+                    break;
+                case Gear.Drive:
+                    ApplyThrottle(throttle);
+                    break;
+            }
+        }
+        
+        private void ApplyNeutralBehavior(float throttle)
+        {
+            // Implement behavior for Neutral gear
+         
+        }
         public void UpShift()
         {
-            CurrentGearIndex++;
-            if (CurrentGearIndex > Gears.Length - 1)
+            if (CurrentGearIndex < Gears.Length - 1)
             {
-                CurrentGearIndex--;
+                CurrentGearIndex++;
             }
         }
 
         public void DownShift()
         {
-            CurrentGearIndex--;
-            if (CurrentGearIndex < 0)
+            if (CurrentGearIndex > 0)
             {
-                CurrentGearIndex++;
+                CurrentGearIndex--;
             }
         }
-  
     }
 }
 
 public enum Gear
 {
-    Park,
-    Neutral,
-    Drive,
-    Reverse
+    Park, Neutral, Drive, Reverse
 }

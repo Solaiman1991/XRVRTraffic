@@ -610,7 +610,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     : MOBILE_INPUT
     Android: CROSS_PLATFORM_INPUT
-    Standalone: CROSS_PLATFORM_INPUT
+    Standalone: CROSS_PLATFORM_INPUT;EASYROADS3D_PRO
     Windows Store Apps: 
     iPhone: CROSS_PLATFORM_INPUT
   additionalCompilerArguments: {}
