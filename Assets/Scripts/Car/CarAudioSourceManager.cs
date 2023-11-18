@@ -1,48 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Input;
 
 public class CarAudioSourceManager : MonoBehaviour
 {
-    private DrivingController CoreDriving;
+    private WheelBaseManager _wheelBase;
+    private IInputManager _inputManager;
 
-    [Header("Audio")]
-    private AudioSource Audio_Runing;
-    [SerializeField]
-    private AudioClip startClip;
-    [SerializeField]
-    private AudioClip runClip; 
-    [SerializeField]
-    private AudioClip stopClip; 
+    [Header("Audio")] private AudioSource Audio_Runing;
+    [SerializeField] private AudioClip startClip;
+    [SerializeField] private AudioClip runClip;
+    [SerializeField] private AudioClip stopClip;
 
     private void Start()
     {
-        CoreDriving = GetComponent<DrivingController>();
+        _wheelBase = GetComponent<WheelBaseManager>();
         Audio_Runing = GetComponent<AudioSource>();
+        _inputManager = GetComponent<IInputManager>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         PlayAudio();
     }
 
     bool isEngineRunning = false;
+
     private void PlayAudio()
     {
-        if (Input.GetKeyDown(KeyCode.I)) // Ignition key
+        if (_inputManager.GetStartEngineInput())
         {
             if (!isEngineRunning)
             {
                 StartCoroutine(StartEngine());
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.O)) // Engine off key
-        {
-            if (isEngineRunning)
-            {
-                StartCoroutine(StopEngine());
-            }
-        }
+        /*
+             if (Input.GetKeyDown(KeyCode.O)) // Engine off key
+             {
+                 if (isEngineRunning)
+                 {
+                     StartCoroutine(StopEngine());
+                 }
+             }
+             */
     }
 
     IEnumerator StartEngine()
@@ -68,7 +69,7 @@ public class CarAudioSourceManager : MonoBehaviour
 
         while (Audio_Runing.isPlaying)
         {
-            Audio_Runing.pitch = 0.4f + CoreDriving.speed / 200;
+            Audio_Runing.pitch = 0.4f + _wheelBase.speed / 200;
             yield return null;
         }
     }

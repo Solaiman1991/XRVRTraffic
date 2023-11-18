@@ -3,7 +3,7 @@ using TMPro;
 
 public class SpeedViolationCounter : MonoBehaviour
 {
-    public DrivingController carController;
+    public WheelBaseManager WheelBaseManager;
     [SerializeField] private TextMeshProUGUI resultText; 
     private const float SpeedThreshold = 20f; 
     private bool speedExceeded = false;
@@ -11,17 +11,16 @@ public class SpeedViolationCounter : MonoBehaviour
 
     void Update()
     {
-        if (carController != null && resultText != null)
+        if (WheelBaseManager != null && resultText != null)
         {
-            Debug.Log("Current Speed: " + carController.speed); 
 
-            if (carController.speed > SpeedThreshold && !speedExceeded)
+            if (WheelBaseManager.speed > SpeedThreshold && !speedExceeded)
             {
                 speedExceeded = true;
                 failureCount++;
                 UpdateResultText();
             }
-            else if (carController.speed <= SpeedThreshold && speedExceeded)
+            else if (WheelBaseManager.speed <= SpeedThreshold && speedExceeded)
             {
                 speedExceeded = false;
             }
@@ -33,3 +32,4 @@ public class SpeedViolationCounter : MonoBehaviour
         resultText.text = "Speed Violations: " + failureCount.ToString();
     }
 }
+    
