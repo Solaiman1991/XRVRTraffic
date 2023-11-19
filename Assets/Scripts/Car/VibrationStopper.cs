@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class VibrationStopper : MonoBehaviour
 {
-    public int SpeedThroshould = 5;
-    public int StepsBelowThreshold = 12;
-    public int StepsAboveThreshold = 15;
+    public int SpeedThroshould = 3;
+    public int StepsBelowThreshold = 15;
+    public int StepsAboveThreshold = 20;
     private WheelBase _wheelBase;
     // Start is called before the first frame update
     void Start()
