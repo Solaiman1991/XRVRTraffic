@@ -1,113 +1,92 @@
 
 using System;
 using Car;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace AI
 {
+    [RequireComponent(typeof(AiRoute), typeof(AIMovement))]
     public class AIController : MonoBehaviour
     {
-        [SerializeField] private AiRoute _route;
-        [SerializeField] private AIMovement _movement;
+        private AIMovement _movement;
         private CarDetector _carDetector;
-        [SerializeField] private float distanceThreshold;
+        [SerializeField] private AiRoute _route;
+        
+        [SerializeField] private float nodeDistanceThreshold;
         [SerializeField] private float distanceToDest;
-        [SerializeField]
-        private Transform currentNode;
+        [SerializeField] private Transform currentNode;
 
         [SerializeField] private GameObject carInFront;
-        [SerializeField] private float minDistanceThreshold = 5f;
 
-        private bool isDriving;
-        
         private void Awake()
         {
             _carDetector = GetComponentInChildren<CarDetector>();
+            _movement = GetComponent<AIMovement>();
         }
 
         private void Start()
         {
             currentNode = _route.GetCurrentNode();
             _movement.SetDestination(currentNode);
+            StartCar();
         }
 
         private void Update()
         {
-            
-            HandleDetectedCars();
-            UpdateMovement();
             if (!IsAtCurrentNode()) return;
+            SetNewTargetPosition();
+        }
+
+        private void SetNewTargetPosition()
+        {
             currentNode = _route.GetNextNode();
-            
-        }
-
-        private void UpdateMovement()
-        {
             _movement.SetDestination(currentNode);
-            SetSpeed();
         }
-
-        private bool IsAllowedToDrive()
-        {
-            return true;
-        }
-
-        private void HandleDetectedCars()
-        {
-            carInFront = _carDetector.GetClosestsParallelCar();
-            
-        }
-
-        private void SetSpeed()
-        {
-            if (carInFront is not null && isDriving)
-            {
-                var distance = Vector3.Distance(carInFront.transform.position, transform.position);
-                if (distance <= minDistanceThreshold)
-                {
-                    Debug.Log("Stopping car");
-                    _movement.StopCar();
-                    isDriving = false;
-                }
-                return;
-            }
-
-            if (carInFront is null && !isDriving)
-            {
-                Debug.Log("Starting to drive");
-                _movement.StartDriving();
-                isDriving = true;
-                return;
-            }
-            
-        }
-
+        
         private bool IsAtCurrentNode()
         {
             distanceToDest = Vector3.Distance(transform.position, currentNode.position);
-            return distanceToDest < distanceThreshold;
+            return distanceToDest < nodeDistanceThreshold;
         }
 
+        public void StopCar()
+        {
+            _movement.StopCar();
+        }
+
+        public void StartCar()
+        {
+            _movement.StartDriving();
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Car")) return;
-            
-            if (_carDetector.IsCarInFront(other.transform))
+            if (other.CompareTag("AI") )
             {
+                if (!_carDetector.ShouldGiveWay(other.transform))
+                {
+                    Debug.Log("Other car seems to not be going in the same direction");
+                    return;
+                }
+
                 carInFront = other.gameObject;
+                StopCar();
+            } else if (other.CompareTag("StopTrigger"))
+            {
+                StopCar();
             }
         }
-
+        
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Car"))
+            if (carInFront == null) return;
+            if (other.name == carInFront.name)
             {
-                if (other.name == carInFront.name && carInFront is not null)
-                {
-                    carInFront == null;
-                }
-            }
+                StartCar();
+            } 
         }
     }
 }

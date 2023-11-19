@@ -10,6 +10,9 @@ TagManager:
   - PeopleSemaphore
   - CarWheel
   - StopLine
+  - AI
+  - RedLight
+  - StopTrigger
   layers:
   - Default
   - TransparentFX

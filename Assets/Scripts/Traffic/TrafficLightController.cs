@@ -1,7 +1,12 @@
+using System;
+using AI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrafficLightController : MonoBehaviour
 {
+    [SerializeField] private GameObject redLightTrigger;
+    
     public GameObject upperGreenLightSphere;
     public GameObject upperYellowLightSphere;
     public GameObject upperRedLightSphere;
@@ -108,6 +113,8 @@ public class TrafficLightController : MonoBehaviour
         timer = yellowTime;
         UpdateLights();
         isManagedByIntersectionController = true;
+        
+        redLightTrigger.SetActive(true);
     }
 
     public void SetRedLight()
@@ -116,6 +123,8 @@ public class TrafficLightController : MonoBehaviour
         timer = redTime;
         UpdateLights();
         isManagedByIntersectionController = true;
+        
+        
     }
     
     public void SetRedAndYellowLight()
@@ -124,10 +133,13 @@ public class TrafficLightController : MonoBehaviour
         timer = redYellowTime;
         UpdateLights();
         isManagedByIntersectionController = true;
+        
+        redLightTrigger.SetActive(false);
     }
     
     public LightState GetCurrentState()
     {
         return currentState;
     }
+    
 }
