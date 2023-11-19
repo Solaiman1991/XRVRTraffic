@@ -8,6 +8,8 @@ TagManager:
   - Car
   - Bcycle
   - PeopleSemaphore
+  - CarWheel
+  - StopLine
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - car
   - semaphore
   - player
-  - 
+  - Traffic
   - 
   - 
   - 
