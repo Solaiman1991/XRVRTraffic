@@ -58,6 +58,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LeftSign",
+                    "type": "Button",
+                    "id": "6e1b1335-e24d-4bf4-b866-68c15caad5c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightSign",
+                    "type": "Button",
+                    "id": "314ae619-5f80-4567-a66e-cf6f8bbc1375",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HavariSign",
+                    "type": "Button",
+                    "id": "d7344a36-0bb7-4081-8310-ac279bd90ea8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -119,7 +146,7 @@
                 {
                     "name": "",
                     "id": "231c1d3a-0977-4973-8b36-6c1fb85ecd73",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -130,7 +157,7 @@
                 {
                     "name": "",
                     "id": "49ee8350-f509-42bf-a5e6-34671077f715",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -146,6 +173,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "StartEngine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fdef58c6-1a9e-4937-9456-b4cd2903f802",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftSign",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a800baed-20f6-4039-bed8-419418123c87",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightSign",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68c504a5-75d4-43a1-a5dc-459c143e7a9a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HavariSign",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
