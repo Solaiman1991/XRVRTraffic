@@ -12,6 +12,10 @@ public class InputManager : MonoBehaviour, IInputManager
     private float BrakeValue;
     public bool GearUp { get; private set; }
     public bool GearDown { get; private set; }
+    public bool GearDrive { get; private set; }
+    public bool GearReverse { get; private set; }
+    public bool GearPark { get; private set; }
+    public bool GearNeutral { get; private set; }
     public bool StartEngine { get; private set; }
     
     public bool LeftSign { get; private set; }
@@ -30,6 +34,10 @@ public class InputManager : MonoBehaviour, IInputManager
     {
         GearUp = false;
         GearDown = false;
+        GearDrive = false;
+        GearReverse = false;
+        GearPark = false;
+        GearNeutral = false;
         StartEngine = false;
     }
 
@@ -40,12 +48,12 @@ public class InputManager : MonoBehaviour, IInputManager
 
     void OnThrottle(InputValue value)
     {
-        ThrottleValue = value.Get<float>();
+        ThrottleValue = Mathf.InverseLerp(-1f, 1f,value.Get<float>());
     }
 
     void OnBrake(InputValue value)
     {
-        BrakeValue = value.Get<float>();
+        BrakeValue = Mathf.InverseLerp(-1f, 1f,value.Get<float>());
     }
 
     void OnGearUp(InputValue value)
@@ -56,6 +64,26 @@ public class InputManager : MonoBehaviour, IInputManager
     void OnGearDown(InputValue value)
     {
         GearDown = true;
+    }
+
+    void OnGearDrive()
+    {
+        GearDrive = true;
+    }
+
+    void OnGearReverse()
+    {
+        GearReverse = true;
+    }
+    
+    void OnGearPark()
+    {
+        GearPark = true;
+    }
+
+    void OnGearNeutral()
+    {
+        GearNeutral = true;
     }
 
     void OnStartEngine(InputValue value)
@@ -121,6 +149,26 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool GetGearDownInput()
     {
         return GearDown;
+    }
+    
+    public bool GetGearDriveInput()
+    {
+        return GearDrive;
+    }
+    
+    public bool GetGearReverseInput()
+    {
+        return GearReverse;
+    }
+    
+    public bool GetGearParkInput()
+    {
+        return GearPark;
+    }
+    
+    public bool GetGearNeutralInput()
+    {
+        return GearNeutral;
     }
 
     public bool GetLeftSignInput()

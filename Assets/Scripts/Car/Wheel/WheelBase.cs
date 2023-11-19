@@ -57,6 +57,7 @@ public class WheelBase : MonoBehaviour
         switch (currentGear)
         {
             case Gear.Neutral:
+                throttle = 0;
                 break;
             case Gear.Reverse:
                 throttle *= -1; 

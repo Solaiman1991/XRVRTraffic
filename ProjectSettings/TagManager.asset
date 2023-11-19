@@ -8,6 +8,10 @@ TagManager:
   - Car
   - Bcycle
   - PeopleSemaphore
+  - CarWheel
+  - StopLine
+  - Waypoint
+  - Arrow
   layers:
   - Default
   - TransparentFX

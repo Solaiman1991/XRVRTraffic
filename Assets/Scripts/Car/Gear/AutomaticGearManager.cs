@@ -14,7 +14,7 @@ public class AutomaticGearManager : MonoBehaviour
     {
         _gearBox = GetComponent<AutomaticGearBox>();
         _inputManager = GetComponent<IInputManager>();
-        _gearShift = GetComponent<GearShift>();
+        _gearShift = GetComponentInChildren<GearShift>();
     }
 
     // Update is called once per frame
@@ -38,6 +38,30 @@ public class AutomaticGearManager : MonoBehaviour
         if (_inputManager.GetGearDownInput())
         {
             _gearBox.DownShift();
+            return true;
+        }
+
+        if (_inputManager.GetGearDriveInput())
+        {
+            _gearBox.ShiftToDrive();
+            return true;
+        }
+        
+        if (_inputManager.GetGearReverseInput())
+        {
+            _gearBox.ShiftToReverse();
+            return true;
+        }
+        
+        if (_inputManager.GetGearParkInput())
+        {
+            _gearBox.ShiftToPark();
+            return true;
+        }
+        
+        if (_inputManager.GetGearNeutralInput())
+        {
+            _gearBox.ShiftToNeutral();
             return true;
         }
 

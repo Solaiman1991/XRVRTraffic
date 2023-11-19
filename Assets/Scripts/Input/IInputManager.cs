@@ -7,7 +7,10 @@
         float GetBrakeInput();
         bool GetGearUpInput();
         bool GetGearDownInput();
-        
+        bool GetGearDriveInput();
+        bool GetGearReverseInput();
+        bool GetGearParkInput();
+        bool GetGearNeutralInput();
         
         bool GetLeftSignInput();
         bool GetRightSignInput();
