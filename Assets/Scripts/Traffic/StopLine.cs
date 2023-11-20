@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using Violation;
@@ -9,7 +10,12 @@ public class StopLine : MonoBehaviour
     private bool isCarAtStopLine = false;
     
     private static int violationCount = 0; 
-    [SerializeField] private ViolationManager _violationManager;
+    private ViolationManager _violationManager;
+
+    private void Start()
+    {
+        _violationManager = FindFirstObjectByType<ViolationManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

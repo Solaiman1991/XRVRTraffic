@@ -1,8 +1,17 @@
+using System;
 using Traffic;
 using UnityEngine;
+using Violation;
 
 public class RedLightDetector : MonoBehaviour
 {
+    private ViolationManager _violationManager;
+
+    private void Start()
+    {
+        _violationManager = FindFirstObjectByType<ViolationManager>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Car"))
@@ -14,6 +23,7 @@ public class RedLightDetector : MonoBehaviour
                 if (redLightController != null)
                 {
                     redLightController.IncrementViolationCount();
+                    _violationManager.OnRedLightViolation();
                 }
             }
         }

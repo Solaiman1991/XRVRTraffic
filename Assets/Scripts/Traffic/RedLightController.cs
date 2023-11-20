@@ -7,7 +7,6 @@ public class RedLightController : MonoBehaviour
 {
     public int redLightViolations = 0;
     public TextMeshProUGUI violationsText;
-    [SerializeField] private ViolationManager _violationManager;
 
     private void Start()
     {
@@ -22,7 +21,6 @@ public class RedLightController : MonoBehaviour
         {
             redLightViolations++; 
             UpdateViolationsText();
-            _violationManager.OnRedLightViolation();
         }
     }
 
