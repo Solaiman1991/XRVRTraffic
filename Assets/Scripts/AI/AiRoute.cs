@@ -22,6 +22,11 @@ public class AiRoute : MonoBehaviour
         currentNodeIndex = (currentNodeIndex + 1) % waypoints.Count;
     }
 
+    public void ResetRoute()
+    {
+        currentNodeIndex = 0;
+    }
+
     public Transform GetCurrentNode()
     {
         return waypoints[currentNodeIndex];

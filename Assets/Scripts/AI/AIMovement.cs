@@ -31,6 +31,11 @@ public class AIMovement : MonoBehaviour
         destination = dest;
     }
 
+    public void ForceStop()
+    {
+        throttle = 0;
+    }
+
     public void StopCar()
     {
         StartCoroutine(LerpStop());
@@ -38,7 +43,6 @@ public class AIMovement : MonoBehaviour
 
     public void StartDriving()
     {
-
         StartCoroutine(LerpAccelerate(moveSpeed));
     }
 

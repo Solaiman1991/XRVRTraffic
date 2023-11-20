@@ -7385,7 +7385,6 @@ MonoBehaviour:
   Head: {fileID: 5543570507444845220}
   Origin: {fileID: 5543570506927978684}
   Target: {fileID: 2463881094477415486}
-  delayBeforeRecenter: 2
 --- !u!1 &5543570506932451838
 GameObject:
   m_ObjectHideFlags: 0
