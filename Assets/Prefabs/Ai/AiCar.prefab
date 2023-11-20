@@ -873,7 +873,7 @@ MonoBehaviour:
   rotationSpeed: 1.5
   throttleLerpTime: 1
   stopLerpTime: 0.5
-  moveSpeed: 8
+  moveSpeed: 10
 --- !u!1 &35078771129413429
 GameObject:
   m_ObjectHideFlags: 0
