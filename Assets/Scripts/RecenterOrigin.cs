@@ -27,6 +27,7 @@ public class RecenterOrigin : MonoBehaviour
     
     void Recenter()
     {
+        Debug.Log("HEESAESAESASA");
         var rotationAngleY = Target.rotation.eulerAngles.y - Head.transform.rotation.eulerAngles.y ;
         Origin.transform.Rotate(0, rotationAngleY, 0);
 
