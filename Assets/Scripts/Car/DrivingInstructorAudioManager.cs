@@ -25,7 +25,7 @@ namespace Car
         [SerializeField] private AudioClip slowDownAudio;
         [SerializeField] private AudioClip rightOfWayAudio;
         [SerializeField] private AudioClip fullStopAudio;
-        
+
 
         private AudioSource audioSource;
 
@@ -52,13 +52,43 @@ namespace Car
 
         public void PlayTurnLeft()
         {
-            audioSource.clip = turnLeftAudio1;
+            var randomNumber = Random.Range(1, 5);
+            switch (randomNumber)
+            {
+                case 1:
+                    audioSource.clip = turnLeftAudio1;
+                    break;
+                case 2:
+                    audioSource.clip = turnLeftAudio2;
+                    break;
+                case 3: 
+                    audioSource.clip = turnLeftAudio3;
+                    break;
+                case 4:
+                    audioSource.clip = turnLeftAudio4;
+                    break;
+            }
             audioSource.Play();
         }
     
         public void PlayTurnRight()
         {
-            audioSource.clip = turnRightAudio1;
+            var randomNumber = Random.Range(1, 5);
+            switch (randomNumber)
+            {
+                case 1:
+                    audioSource.clip = turnRightAudio1;
+                    break;
+                case 2:
+                    audioSource.clip = turnRightAudio2;
+                    break;
+                case 3: 
+                    audioSource.clip = turnRightAudio3;
+                    break;
+                case 4:
+                    audioSource.clip = turnRightAudio4;
+                    break;
+            }
             audioSource.Play();
         }
         public void PlayFinishLesson()
@@ -74,19 +104,46 @@ namespace Car
 
         public void PlayRedLightViolation()
         {
-            audioSource.clip = redLightAudio1;
+            var randomNumber = Random.Range(1, 3);
+            switch (randomNumber)
+            {
+                case 1:
+                    audioSource.clip = redLightAudio1;
+                    break;
+                case 2:
+                    audioSource.clip = redLightAudio2;
+                    break;
+            }
             audioSource.Play();
         }
 
         public void PlaySpeedViolation()
         {
-            audioSource.clip = speedLimitAudio;
+            var randomNumber = Random.Range(1, 3);
+            switch (randomNumber)
+            {
+                case 1:
+                    audioSource.clip = speedLimitAudio;
+                    break;
+                case 2:
+                    audioSource.clip = slowDownAudio;
+                    break;
+            }
             audioSource.Play();
         }
 
         public void PlayIndicatorViolation()
         {
-            audioSource.clip = indicatorAudio1;
+            var randomNumber = Random.Range(1, 3);
+            switch (randomNumber)
+            {
+                case 1:
+                    audioSource.clip = indicatorAudio1;
+                    break;
+                case 2:
+                    audioSource.clip = indicatorAudio2;
+                    break;
+            }
             audioSource.Play();
         }
 

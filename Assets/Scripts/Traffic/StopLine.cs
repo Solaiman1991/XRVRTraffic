@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Violation;
 
 public class StopLine : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class StopLine : MonoBehaviour
     private bool isCarAtStopLine = false;
     
     private static int violationCount = 0; 
+    [SerializeField] private ViolationManager _violationManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,6 +29,7 @@ public class StopLine : MonoBehaviour
             {
                 violationCount++;
                 UpdateViolationText();
+                _violationManager.OnFullStopViolation();
             }
         }
     }
