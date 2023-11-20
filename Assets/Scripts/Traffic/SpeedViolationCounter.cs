@@ -5,9 +5,9 @@ public class SpeedViolationCounter : MonoBehaviour
 {
     public WheelBaseManager WheelBaseManager;
     [SerializeField] private TextMeshProUGUI resultText; 
-    private const float SpeedThreshold = 20f; 
+    private const float SpeedThreshold = 37f; 
     private bool speedExceeded = false;
-    public int failureCount = 0; 
+    public static int failureCount = 0; 
 
     void Update()
     {

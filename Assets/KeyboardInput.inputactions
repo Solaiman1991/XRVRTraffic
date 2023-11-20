@@ -33,24 +33,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "GearUp",
-                    "type": "Button",
-                    "id": "9643b78f-d640-4fde-8bad-78b6bbd91466",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GearDown",
-                    "type": "Button",
-                    "id": "69527ccc-6ca2-46ba-a9c9-d8ce5a0452c7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "StartEngine",
                     "type": "Button",
                     "id": "f1e0263b-5bac-47b5-9341-e99606bd6c68",
@@ -81,6 +63,42 @@
                     "name": "HavariSign",
                     "type": "Button",
                     "id": "d7344a36-0bb7-4081-8310-ac279bd90ea8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GearPark",
+                    "type": "Button",
+                    "id": "66bccab9-33e8-4534-92c9-816e5c16309e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GearDrive",
+                    "type": "Button",
+                    "id": "f866cbc4-7bac-4aa1-b31b-442c736724cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GearNeutral",
+                    "type": "Button",
+                    "id": "b3eee126-839e-4655-9a4b-9e2c4be1bae9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GearReverse",
+                    "type": "Button",
+                    "id": "92c61cb7-f8f9-4f62-bbfe-cd8212caebd5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -145,28 +163,6 @@
                 },
                 {
                     "name": "",
-                    "id": "231c1d3a-0977-4973-8b36-6c1fb85ecd73",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GearUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "49ee8350-f509-42bf-a5e6-34671077f715",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GearDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3c212aad-f994-4345-a44a-cd1d58324222",
                     "path": "<Keyboard>/i",
                     "interactions": "",
@@ -179,7 +175,7 @@
                 {
                     "name": "",
                     "id": "fdef58c6-1a9e-4937-9456-b4cd2903f802",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -190,7 +186,7 @@
                 {
                     "name": "",
                     "id": "a800baed-20f6-4039-bed8-419418123c87",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -201,11 +197,55 @@
                 {
                     "name": "",
                     "id": "68c504a5-75d4-43a1-a5dc-459c143e7a9a",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "HavariSign",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18377468-21f7-426a-af57-dfd05f40f80a",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GearPark",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "857e5149-1dab-457c-8607-58bf8926b2ef",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GearDrive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7c2bfb1-9e23-4278-93ac-9f18865b1a24",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GearNeutral",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "854beb13-d352-4056-acd9-f59dad3359da",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GearReverse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
