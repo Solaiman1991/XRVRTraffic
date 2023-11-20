@@ -1,5 +1,6 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using Violation;
 
 public class SpeedViolationCounter : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SpeedViolationCounter : MonoBehaviour
     private const float SpeedThreshold = 37f; 
     private bool speedExceeded = false;
     public static int failureCount = 0; 
+    [SerializeField] private ViolationManager _violationManager;
 
     void Update()
     {
@@ -19,6 +21,7 @@ public class SpeedViolationCounter : MonoBehaviour
                 speedExceeded = true;
                 failureCount++;
                 UpdateResultText();
+                _violationManager.OnSpeedViolation();
             }
             else if (WheelBaseManager.speed <= SpeedThreshold && speedExceeded)
             {

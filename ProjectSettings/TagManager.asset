@@ -23,6 +23,8 @@ TagManager:
   - StopLine
   - Waypoint
   - Arrow
+  - Collider1
+  - Collider2
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Violation;
 
 public class SharkTeethLine : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class SharkTeethLine : MonoBehaviour
     public WheelBaseManager wheelBaseManager;
     public static int failureCount = 0; 
     public float speedLimit = 2f; 
+    [SerializeField] private ViolationManager _violationManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +19,7 @@ public class SharkTeethLine : MonoBehaviour
             {
                 failureCount++;
                 UpdateResultText();
+                _violationManager.OnRightOfWayViolation();
             }
         }
     }
