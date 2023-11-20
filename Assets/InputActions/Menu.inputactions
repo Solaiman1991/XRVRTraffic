@@ -189,6 +189,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "G29",
+                    "id": "8aa29304-e229-487f-8880-9c4c953af10c",
+                    "path": "Dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "4ad41f9b-cd90-4898-8355-d06673bcb4dc",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/hat/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "6d49fa73-d7fa-4f51-ba54-b4f821fa201b",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/hat/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "4e427ba5-ec6f-4a42-8e08-4476e74e5a96",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/hat/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "456f3503-2dfc-46c6-9c97-d006407f503a",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/hat/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "c3c5a072-9e08-415f-b86a-8fa7a1f9db80",
                     "path": "<Keyboard>/enter",
@@ -212,8 +267,30 @@
                 },
                 {
                     "name": "",
+                    "id": "18c3fd24-7341-485f-9ad3-97f2470b9991",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "14f66473-84eb-43b4-8474-ed49097dd633",
                     "path": "<HID::Driving Force GT>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "891a70f8-56cb-4d4c-baf2-bab421f08106",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/button3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

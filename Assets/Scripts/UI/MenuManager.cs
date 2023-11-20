@@ -25,8 +25,8 @@ public class MenuManager : MonoBehaviour
 
     public void SpawnMainMenu()
     {
-       SpawnMenu(MainMenu);
-        EventSystem.current.SetSelectedGameObject(MainMenuStartButton);
+        SpawnMenu(MainMenu);
+       EventSystem.current.SetSelectedGameObject(MainMenuStartButton);
     }
 
     public void SpawnResultMenu()

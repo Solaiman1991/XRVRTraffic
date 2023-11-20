@@ -4,6 +4,8 @@ public class MainMenuController : MonoBehaviour
 {
     private MenuManager _menuManager;
 
+    [SerializeField]
+    RouteManager _routeManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,21 +15,18 @@ public class MainMenuController : MonoBehaviour
     public void OnCityDrive()
     {
         _menuManager.CloseMainMenu();
-
-        //TODO: Lave ting der skal til får at den gamemode er på
+        _routeManager.StartCityRoute();
     }
 
-    public void OnHightwayDrive()
+    public void OnHighwayDrive()
     {
         _menuManager.CloseMainMenu();
-
-        //TODO: Lave ting der skal til får at den gamemode er på
+        _routeManager.StartHighway();
     }
 
     public void OnFreeRoam()
     {
         _menuManager.CloseMainMenu();
-
-        //TODO: Lave ting der skal til får at den gamemode er på
+        _routeManager.StartFreeRoam();
     }
 }

@@ -10,7 +10,8 @@ public class MenuSpawner : MonoBehaviour
     private float timeInsideCollider = 0f;
     public float requiredTime = 2f; 
     public float delayBeforeMenu = 2f;
-
+    [SerializeField]
+    RouteManager _routeManager;
     private bool _menuActive = false;
     
     private void OnTriggerEnter(Collider other)
@@ -31,7 +32,7 @@ public class MenuSpawner : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_menuActive)
         {
@@ -47,17 +48,18 @@ public class MenuSpawner : MonoBehaviour
                 if (GearBox.GetCurrentGear() == Gear.Park)
                 {
                     _menuActive = true;
-                    StartCoroutine(showMainMenu());
+                    StartCoroutine(endLesson());
                 }
             }
         }
     }
 
-    private IEnumerator showMainMenu()
+    private IEnumerator endLesson()
     {
         yield return new WaitForSeconds(delayBeforeMenu);
 
-        MenuManager.SpawnMainMenu();
+        MenuManager.SpawnResultMenu();
+        _routeManager.StopRoute();        
     }
     
 }
