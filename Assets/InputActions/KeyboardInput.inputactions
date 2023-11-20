@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Recenter",
+                    "type": "Button",
+                    "id": "d8dbc722-e36d-43a6-a84a-d162f10e5b71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -246,6 +255,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "GearReverse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9e00afc-4084-480e-b35d-654d017cce95",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recenter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
