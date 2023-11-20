@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Recenter",
+                    "type": "Button",
+                    "id": "fbf28577-3109-4dce-82d7-6f57313f3b4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -151,7 +160,7 @@
                 {
                     "name": "",
                     "id": "02591726-a7fc-4d46-b069-0a8203d81f5f",
-                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/button3",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/button24",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -244,6 +253,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightSign",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ec89420-93f5-4724-b907-1c828d7521ee",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recenter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

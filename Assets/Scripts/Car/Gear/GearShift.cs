@@ -14,7 +14,6 @@ namespace Car.Gear
 
         public void UpdateGearPosition(Gear newGear)
         {
-            /*
             switch (newGear)
             {
                 case Gear.Drive:
@@ -30,7 +29,6 @@ namespace Car.Gear
                     gearPickerImage.sprite = gearParkSprite;
                     break;
             }
-            */
         }
 
         private void Start()

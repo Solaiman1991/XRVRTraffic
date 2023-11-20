@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class DrivingReportMenuController : MonoBehaviour
 {
+    
 
     private MenuManager _menuManager;
     void Start()
     {
+        _menuManager = GetComponentInParent<MenuManager>();
+
         //TODO: Få results her ind
     }
 

@@ -10,6 +10,9 @@ namespace Navigation
     {
         private Transform arrowsTransform;
         public List<GameObject> arrows = new();
+
+        [SerializeField]
+        GameObject parkingSpotObject;
         void Start()
         {
             arrowsTransform = transform.Find("Arrows");
@@ -21,10 +24,19 @@ namespace Navigation
                 }
             }
         }
+        void OnDisable()
+        {
+            parkingSpotObject.SetActive(false);
+        }
 
         public ArrowDirection.Direction OnWaypointEntered(string waypointName)
         {
             var waypointIndex = GetNumber(waypointName);
+            if (waypointIndex == arrows.Count + 1)
+            {
+                parkingSpotObject.SetActive(true);
+                return ArrowDirection.Direction.Stop;
+            }
             foreach (var arrow in arrows.Where(arrow => waypointIndex == GetNumber(arrow.name)))
             {
                 arrow.SetActive(true);

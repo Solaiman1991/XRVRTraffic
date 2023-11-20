@@ -28,6 +28,9 @@ namespace Navigation
                     case ArrowDirection.Direction.Right:
                         audioManager.PlayTurnRight();
                         break;
+                    case ArrowDirection.Direction.Stop:
+                        audioManager.PlayPark();
+                        break;
                 }
             }
         }

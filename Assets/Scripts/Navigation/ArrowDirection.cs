@@ -11,6 +11,6 @@ namespace Navigation
         {
             return direction;
         }
-        public enum Direction {Left, Right};
+        public enum Direction {Left, Right, Stop};
     }
 }
