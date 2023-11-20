@@ -14,5 +14,7 @@
         bool GetHavariSignInput();
       
         bool GetStartEngineInput();
+
+        bool GetRecenterInput();
     }
 }

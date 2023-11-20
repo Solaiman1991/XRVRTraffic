@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool LeftSign { get; private set; }
     public bool RightSign { get; private set; }
     public bool HavariSign { get; private set; }
+    public bool Recenter { get; private set;  }
     
     private ArrowBlinker arrowBlinker; 
 
@@ -31,6 +32,7 @@ public class InputManager : MonoBehaviour, IInputManager
         GearUp = false;
         GearDown = false;
         StartEngine = false;
+        Recenter = false;
     }
 
     void OnSteering(InputValue value)
@@ -89,13 +91,12 @@ public class InputManager : MonoBehaviour, IInputManager
             arrowBlinker.ToggleHavariBlinking(); 
         }
     }
-    
-    
-    
-    
 
-    // Reset gear and engine states at the end of each frame
-
+    void OnRecenter(InputValue value)
+    {
+        Recenter = true;
+    }
+    
     
     
     public float GetSteeringInput()
@@ -141,5 +142,10 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool GetStartEngineInput()
     {
         return StartEngine;
+    }
+
+    public bool GetRecenterInput()
+    {
+        return Recenter;
     }
 }

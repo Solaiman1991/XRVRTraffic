@@ -14,6 +14,6 @@ public class FPSTracker : MonoBehaviour
     private void Update()
     {
         var fps = (1f / Time.deltaTime);
-        Debug.Log("FPS: " + fps);
+//        Debug.Log("FPS: " + fps);
     }
 }
