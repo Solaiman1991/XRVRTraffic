@@ -12,9 +12,7 @@ public class RecenterOrigin : MonoBehaviour
     public Transform Origin;
 
     public Transform Target;
-
-    public float delayBeforeRecenter = 2f;
-
+    
     private IInputManager _inputManager;
 
     bool missingFirstRecenter = true;
