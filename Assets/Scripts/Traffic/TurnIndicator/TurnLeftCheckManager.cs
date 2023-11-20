@@ -29,7 +29,7 @@ public class TurnLeftCheckManager : MonoBehaviour
             if (!IsCorrectIndicatorOn())
             {
                 failureCount++;
-                Debug.Log("Blinklys venstre fejl count: " + failureCount);
+                Debug.LogWarning("Blinklys venstre fejl count: " + failureCount);
             }
             ResetColliders();
         }
