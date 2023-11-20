@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Traffic;
 using Violation; // Include the TextMeshPro namespace
 
 public class RedLightController : MonoBehaviour

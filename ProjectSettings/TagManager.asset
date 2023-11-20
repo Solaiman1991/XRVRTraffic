@@ -8,6 +8,12 @@ TagManager:
   - Car
   - Bcycle
   - PeopleSemaphore
+  - CarWheel
+  - StopLine
+  - AI
+  - RedLight
+  - StopTrigger
+  - AIWaypoint
   - StopLine
   - SharkTeeth
   - SpeedLimit50
@@ -32,8 +38,8 @@ TagManager:
   - car
   - semaphore
   - player
-  - 
-  - 
+  - Traffic
+  - ai_navi
   - 
   - 
   - 
