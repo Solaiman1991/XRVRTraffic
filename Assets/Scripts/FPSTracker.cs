@@ -10,7 +10,6 @@ public class FPSTracker : MonoBehaviour
     }
 
     // Update is called once per frame
-
     private void Update()
     {
         var fps = (1f / Time.deltaTime);

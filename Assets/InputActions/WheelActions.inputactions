@@ -1,0 +1,193 @@
+{
+    "name": "WheelActions",
+    "maps": [
+        {
+            "name": "Driving",
+            "id": "02dc9e2d-98ba-4f51-af2f-7bb4c4b6475d",
+            "actions": [
+                {
+                    "name": "Steering",
+                    "type": "Value",
+                    "id": "d88c1211-e2b0-48bf-9958-cb3c1d1b964d",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Throttle",
+                    "type": "Value",
+                    "id": "11ae8c74-fea8-419e-827b-ce9a13c15dbc",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Brake",
+                    "type": "Value",
+                    "id": "df712f1c-e4a3-4f70-89e9-b3ce06a6666d",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "GearUp",
+                    "type": "Button",
+                    "id": "5ab3e070-d28f-4ed8-be9e-6087f1c04969",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GearDown",
+                    "type": "Button",
+                    "id": "05eb346c-31a6-4656-8d1b-ce8cdf26362f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartEngine",
+                    "type": "Button",
+                    "id": "475d3195-08e3-4f57-8961-9775640847e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Recenter",
+                    "type": "Button",
+                    "id": "100b3f47-3324-4f55-b921-ff05195cae7d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a1733eff-f402-468f-b291-5e857d4cb9eb",
+                    "path": "<HID::Driving Force GT>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "964da29b-3f4b-4c6f-96f4-72df8f7e5037",
+                    "path": "<HID::Driving Force GT>/stick/left",
+                    "interactions": "",
+                    "processors": "Invert",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a99d9bd6-210a-426c-b9d4-85501b0b177a",
+                    "path": "<HID::Driving Force GT>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throttle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63ae8924-2589-4973-8605-5147fe3148c0",
+                    "path": "<HID::Driving Force GT>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f553a477-f7a2-463d-85d4-4d173e8abd09",
+                    "path": "<HID::Driving Force GT>/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GearUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c544f15d-1ac2-4c23-b0f1-3f3f76e2b914",
+                    "path": "<HID::Driving Force GT>/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GearDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f960d743-7914-4400-9e61-c0ab08d92770",
+                    "path": "<HID::Driving Force GT>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartEngine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "505ae8b9-44c4-45dd-858e-af4d1d482e10",
+                    "path": "<HID::Driving Force GT>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recenter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "New action map",
+            "id": "20621907-385f-4fbb-a614-7b30a79bf252",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "dade9d62-ce07-41a2-86b3-cebf8a9f401b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "86dd5d52-7960-44d3-b9d1-7f26494f5b28",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

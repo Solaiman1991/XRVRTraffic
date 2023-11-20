@@ -1,27 +1,40 @@
-using UnityEngine;
 using System.Collections.Generic;
-using Car.Gear;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class GearShift : MonoBehaviour
+namespace Car.Gear
 {
-    public RectTransform gearImage;
-    public Dictionary<Gear, Vector2> gearPositions;
-
-    public void UpdateGearPosition(Gear newGear)
+    public class GearShift : MonoBehaviour
     {
-        gearImage.anchoredPosition = gearPositions[newGear];
-    }
+        private Image gearPickerImage;
+        public Sprite gearDriveSprite;
+        public Sprite gearNeutralSprite;
+        public Sprite gearReverseSprite;
+        public Sprite gearParkSprite;
 
-    private void Start()
-    {
-        gearPositions = new Dictionary<Gear, Vector2>
+        public void UpdateGearPosition(Gear newGear)
         {
-            { Gear.Park, new Vector2(gearImage.anchoredPosition.x, 78) },
-            { Gear.Reverse, new Vector2(gearImage.anchoredPosition.x, 13) },
-            { Gear.Neutral, new Vector2(gearImage.anchoredPosition.x, -50) },
-            { Gear.Drive, new Vector2(gearImage.anchoredPosition.x, -119) }
-        };
+            switch (newGear)
+            {
+                case Gear.Drive:
+                    gearPickerImage.sprite = gearDriveSprite;
+                    break;
+                case Gear.Neutral:
+                    gearPickerImage.sprite = gearNeutralSprite;
+                    break;
+                case Gear.Reverse:
+                    gearPickerImage.sprite = gearReverseSprite;
+                    break;
+                case Gear.Park:
+                    gearPickerImage.sprite = gearParkSprite;
+                    break;
+            }
+        }
 
-        UpdateGearPosition(Gear.Park);
+        private void Start()
+        {
+            gearPickerImage = GetComponent<Image>();
+            UpdateGearPosition(Gear.Park);
+        }
     }
 }

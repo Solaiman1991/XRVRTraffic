@@ -26,7 +26,7 @@ public class RedLightController : MonoBehaviour
     {
         if (violationsText != null)
         {
-            violationsText.text = "Violations: " + redLightViolations.ToString();
+            violationsText.text = " Red light violations: " + redLightViolations.ToString();
         }
     }
     

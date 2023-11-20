@@ -1,43 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class StopLine : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI resultText;
-    public int failureCount = 0; 
-    public float speedLimit = 15f; 
+    public TextMeshProUGUI violationText;
+    private float timeAtStopLine = 0f;
+    private bool isCarAtStopLine = false;
+    
+    private static int violationCount = 0; 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Car")) 
+        if (other.CompareTag("Car"))
         {
-            float speed = GetCarSpeed(other);
-            if (speed > speedLimit)
+            isCarAtStopLine = true;
+            timeAtStopLine = 0f; 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Car"))
+        {
+            isCarAtStopLine = false;
+            if (timeAtStopLine < 3f) // Less than 3 seconds
             {
-                failureCount++;
-                resultText.text = "Traffic Violations: " + failureCount;
+                violationCount++;
+                UpdateViolationText();
             }
         }
     }
 
-    private float GetCarSpeed(Collider car)
+    private void Update()
     {
-        Rigidbody carRb = car.GetComponent<Rigidbody>();
-        if (carRb != null)
+        if (isCarAtStopLine)
         {
-            // Convert speed from m/s to km/h
-            return carRb.velocity.magnitude * 3.6f;
+            timeAtStopLine += Time.deltaTime;
         }
-
-        return 0f; 
     }
 
-    public void ResetFailures()
+    private void UpdateViolationText()
     {
-        failureCount = 0;
-        resultText.text = "Traffic Violations: " + failureCount;
+        if (violationText != null)
+        {
+            violationText.text = "Stopline Violations: " + violationCount.ToString();
+        }
     }
 }
