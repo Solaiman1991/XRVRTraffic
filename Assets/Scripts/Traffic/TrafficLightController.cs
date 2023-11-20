@@ -1,11 +1,13 @@
 using System;
 using AI;
+using Car;
+using Traffic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrafficLightController : MonoBehaviour
 {
-    [SerializeField] private GameObject redLightTrigger;
+    private CarBlocker _carBlocker;
     
     public GameObject upperGreenLightSphere;
     public GameObject upperYellowLightSphere;
@@ -37,6 +39,11 @@ public class TrafficLightController : MonoBehaviour
     public LightState currentState;
 
     public bool isManagedByIntersectionController = false;
+
+    private void Awake()
+    {
+        _carBlocker = GetComponentInChildren<CarBlocker>();
+    }
 
     void Start()
     {
@@ -114,7 +121,7 @@ public class TrafficLightController : MonoBehaviour
         UpdateLights();
         isManagedByIntersectionController = true;
         
-        redLightTrigger.SetActive(true);
+        _carBlocker.BlockCars();
     }
 
     public void SetRedLight()
@@ -123,8 +130,6 @@ public class TrafficLightController : MonoBehaviour
         timer = redTime;
         UpdateLights();
         isManagedByIntersectionController = true;
-        
-        
     }
     
     public void SetRedAndYellowLight()
@@ -134,7 +139,7 @@ public class TrafficLightController : MonoBehaviour
         UpdateLights();
         isManagedByIntersectionController = true;
         
-        redLightTrigger.SetActive(false);
+        _carBlocker.UnblockCars();
     }
     
     public LightState GetCurrentState()

@@ -11,23 +11,18 @@ namespace Traffic
     {
         [SerializeField] private GameObject stopTrigger;
         [SerializeField]
-        private bool blockCars = false;
-        
-        [SerializeField]
         private List<AIController> cars;
         
-        // Skal ikke være en update. Bruger update for at toggle lyset manuelt
-        private void Update()
+       public void BlockCars()
         {
-            if (blockCars)
-            {
-                stopTrigger.SetActive(true);
-            }
-            else
-            {
-                stopTrigger.SetActive(false);
-                StartCoroutine(StartCars());
-            }
+            stopTrigger.SetActive(true);
+        }
+
+        public void UnblockCars()
+        {
+            stopTrigger.SetActive(false);
+            StartCoroutine(StartCars());
+            cars = new List<AIController>();
         }
 
         private IEnumerator StartCars()

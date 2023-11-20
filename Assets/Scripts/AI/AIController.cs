@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 namespace AI
 {
-    [RequireComponent(typeof(AiRoute), typeof(AIMovement))]
+    [RequireComponent(typeof(AIMovement))]
     public class AIController : MonoBehaviour
     {
         private AIMovement _movement;
@@ -44,6 +44,7 @@ namespace AI
         {
             currentNode = _route.GetNextNode();
             _movement.SetDestination(currentNode);
+            
         }
         
         private bool IsAtCurrentNode()
@@ -62,24 +63,28 @@ namespace AI
             _movement.StartDriving();
         }
         
+
         private void OnTriggerEnter(Collider other)
         {
+            
             if (other.CompareTag("AI") )
             {
-                if (!_carDetector.ShouldGiveWay(other.transform))
-                {
-                    Debug.Log("Other car seems to not be going in the same direction");
-                    return;
-                }
+                // if (!_carDetector.ShouldGiveWay(other.transform))
+                // {
+                //     Debug.Log("Other car seems to not be going in the same direction");
+                //     return;
+                // }
 
                 carInFront = other.gameObject;
                 StopCar();
             } else if (other.CompareTag("StopTrigger"))
             {
+                Debug.Log("Should stop for red light");
                 StopCar();
             }
         }
         
+
         private void OnTriggerExit(Collider other)
         {
             if (carInFront == null) return;

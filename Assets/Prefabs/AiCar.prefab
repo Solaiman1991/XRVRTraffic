@@ -731,8 +731,8 @@ Transform:
   m_GameObject: {fileID: 35075959146606987}
   m_LocalRotation: {x: -0, y: 0.08715578, z: -0, w: 0.9961947}
   m_LocalPosition: {x: -2.91, y: -1.5067496, z: -22.03}
-  m_LocalScale: {x: 0.7669943, y: 0.76699424, z: 0.7669943}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 30227087361691025}
   - {fileID: 7321193443124112223}
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _route: {fileID: 0}
-  nodeDistanceThreshold: 2
+  nodeDistanceThreshold: 2.5
   distanceToDest: 0
   currentNode: {fileID: 0}
   carInFront: {fileID: 0}
@@ -871,8 +871,9 @@ MonoBehaviour:
   throttle: 2
   destination: {fileID: 0}
   rotationSpeed: 1.5
-  throttleLerpSpeed: 2
-  moveSpeed: 4
+  throttleLerpTime: 1
+  stopLerpTime: 0.5
+  moveSpeed: 8
 --- !u!1 &35078771129413429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,8 +1750,8 @@ Transform:
   m_GameObject: {fileID: 35808241044223179}
   m_LocalRotation: {x: -1.0097421e-28, y: -0.000000059604645, z: -1.694066e-21, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.99, y: 0.99, z: 0.99}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 32664803917912877}
   - {fileID: 33208037124618561}
@@ -2074,7 +2075,7 @@ GameObject:
   - component: {fileID: 7321193443124112223}
   - component: {fileID: 7321193443124112220}
   - component: {fileID: 7321193443124112221}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: CarDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2089,8 +2090,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7321193443124112222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0000002348, y: 0, z: 4.39}
+  m_LocalScale: {x: 0.64608, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 30294977247440515}

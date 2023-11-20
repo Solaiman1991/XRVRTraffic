@@ -13,6 +13,7 @@ TagManager:
   - AI
   - RedLight
   - StopTrigger
+  - AIWaypoint
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - semaphore
   - player
   - Traffic
-  - 
+  - ai_navi
   - 
   - 
   - 
