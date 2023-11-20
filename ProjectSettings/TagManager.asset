@@ -8,6 +8,11 @@ TagManager:
   - Car
   - Bcycle
   - PeopleSemaphore
+  - StopLine
+  - SharkTeeth
+  - SpeedLimit50
+  - SpeedLimit110
+  - SpeedLimit130
   layers:
   - Default
   - TransparentFX
