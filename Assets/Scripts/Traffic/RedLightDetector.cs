@@ -1,3 +1,4 @@
+using Traffic;
 using UnityEngine;
 
 public class RedLightDetector : MonoBehaviour
