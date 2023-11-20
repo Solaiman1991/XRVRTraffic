@@ -13,6 +13,10 @@ TagManager:
   - SpeedLimit50
   - SpeedLimit110
   - SpeedLimit130
+  - CarWheel
+  - StopLine
+  - Waypoint
+  - Arrow
   layers:
   - Default
   - TransparentFX

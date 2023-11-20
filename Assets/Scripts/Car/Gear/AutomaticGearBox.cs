@@ -29,13 +29,33 @@ namespace Car.Gear
                 _currentGearIndex++;
             }
         }
+
+        public void ShiftToPark()
+        {
+            _currentGearIndex = (int)Gear.Park;
+        }
+        
+        public void ShiftToDrive()
+        {
+            _currentGearIndex = (int)Gear.Drive;
+        }
+        
+        public void ShiftToReverse()
+        {
+            _currentGearIndex = (int)Gear.Reverse;
+        }
+        
+        public void ShiftToNeutral()
+        {
+            _currentGearIndex = (int)Gear.Neutral;
+        }
     }
     
     public enum Gear
     {
         Park,
+        Reverse,
         Neutral,
-        Drive,
-        Reverse
+        Drive
     }
 }
