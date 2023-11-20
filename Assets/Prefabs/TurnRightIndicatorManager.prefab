@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3e405d10b9a97479407aae2f4163c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowBlinker: {fileID: 0}
-  failureCount: 0
+  arrowBlinker: {fileID: 1373781545303496278, guid: 81e2806b6f6d35247892cd777ff347c0,
+    type: 3}
 --- !u!1 &1708424053262117481
 GameObject:
   m_ObjectHideFlags: 0

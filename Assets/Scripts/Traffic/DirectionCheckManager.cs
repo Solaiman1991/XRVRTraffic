@@ -13,7 +13,7 @@ public class DirectionCheckManager : MonoBehaviour
             if (collider2Hit) 
             {
                 wrongDirectionCount++;
-                Debug.Log("Kører i forkert retning! Fejl count: " + wrongDirectionCount);
+                Debug.LogWarning("Kører i forkert retning! Fejl count: " + wrongDirectionCount);
             }
             ResetColliders();
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using Violation;
@@ -5,16 +6,22 @@ using Violation;
 public class SharkTeethLine : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI resultText;
-    public WheelBaseManager wheelBaseManager;
+    private WheelBaseManager _wheelBaseManager;
     public static int failureCount = 0; 
     public float speedLimit = 2f; 
-    [SerializeField] private ViolationManager _violationManager;
+    private ViolationManager _violationManager;
+
+    private void Start()
+    {
+        _violationManager = FindFirstObjectByType<ViolationManager>();
+        _wheelBaseManager = FindFirstObjectByType<WheelBaseManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Car") && wheelBaseManager != null) 
+        if (other.CompareTag("Car") && _wheelBaseManager != null) 
         {
-            float speed = wheelBaseManager.speed;
+            float speed = _wheelBaseManager.speed;
             if (speed > speedLimit)
             {
                 failureCount++;
