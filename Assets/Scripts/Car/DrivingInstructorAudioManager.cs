@@ -25,8 +25,7 @@ namespace Car
         [SerializeField] private AudioClip slowDownAudio;
         [SerializeField] private AudioClip rightOfWayAudio;
         [SerializeField] private AudioClip fullStopAudio;
-
-
+        
         private AudioSource audioSource;
 
         void Start()
@@ -36,6 +35,8 @@ namespace Car
 
         public void PlayStartCity()
         {
+            if (audioSource.isPlaying) return;
+            
             audioSource.clip = startCityAudio;
             audioSource.Play();
         }
@@ -46,12 +47,16 @@ namespace Car
         }
         public void PlayStartFreeRoam()
         {
+            if (audioSource.isPlaying) return;
+            
             audioSource.clip = freeroamAudio;
             audioSource.Play();
         }
 
         public void PlayTurnLeft()
         {
+            if (audioSource.isPlaying) return;
+            
             var randomNumber = Random.Range(1, 5);
             switch (randomNumber)
             {
@@ -73,6 +78,8 @@ namespace Car
     
         public void PlayTurnRight()
         {
+            if (audioSource.isPlaying) return;
+            
             var randomNumber = Random.Range(1, 5);
             switch (randomNumber)
             {
@@ -93,17 +100,23 @@ namespace Car
         }
         public void PlayFinishLesson()
         {
+            if (audioSource.isPlaying) return;
+            
             audioSource.clip = finishLessonAudio;
             audioSource.Play();
         }
         public void PlayPark()
         {
+            if (audioSource.isPlaying) return;
+            
             audioSource.clip = parkAudio;
             audioSource.Play();
         }
 
         public void PlayRedLightViolation()
         {
+            if (audioSource.isPlaying) return;
+            
             var randomNumber = Random.Range(1, 3);
             switch (randomNumber)
             {
@@ -119,6 +132,8 @@ namespace Car
 
         public void PlaySpeedViolation()
         {
+            if (audioSource.isPlaying) return;
+            
             var randomNumber = Random.Range(1, 3);
             switch (randomNumber)
             {
@@ -134,6 +149,8 @@ namespace Car
 
         public void PlayIndicatorViolation()
         {
+            if (audioSource.isPlaying) return;
+            
             var randomNumber = Random.Range(1, 3);
             switch (randomNumber)
             {
@@ -149,12 +166,16 @@ namespace Car
 
         public void PlayRightOfWayViolation()
         {
+            if (audioSource.isPlaying) return;
+            
             audioSource.clip = rightOfWayAudio;
             audioSource.Play();
         }
 
         public void PlayFullStopViolation()
         {
+            if (audioSource.isPlaying) return;
+            
             audioSource.clip = fullStopAudio;
             audioSource.Play();
         }

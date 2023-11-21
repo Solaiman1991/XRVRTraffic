@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Violation;
 
 public class TurnLeftCheckManager : MonoBehaviour
 {
@@ -8,6 +10,12 @@ public class TurnLeftCheckManager : MonoBehaviour
     private bool firstColliderHit = false;
     private bool secondColliderHit = false;
     public static int failureCount = 0;
+    private ViolationManager _violationManager;
+
+    private void Start()
+    {
+        _violationManager = FindFirstObjectByType<ViolationManager>();
+    }
 
     public void ColliderHit(string colliderName)
     {
@@ -29,7 +37,8 @@ public class TurnLeftCheckManager : MonoBehaviour
             if (!IsCorrectIndicatorOn())
             {
                 failureCount++;
-                Debug.LogWarning("Blinklys venstre fejl count: " + failureCount);
+                _violationManager.OnIndicatorViolation();
+                Debug.Log("Blinklys venstre fejl count: " + failureCount);
             }
             ResetColliders();
         }
