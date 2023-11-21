@@ -12,8 +12,10 @@ namespace AI
     [RequireComponent(typeof(AIMovement))]
     public class AIController : MonoBehaviour
     {
+        [SerializeField]
+        private MenuManager _menuManager;
         private AIMovement _movement;
-        private CarDetector _carDetector;
+        
         [SerializeField] private AiRoute _route;
         
         [SerializeField] private float nodeDistanceThreshold;
@@ -27,7 +29,6 @@ namespace AI
 
         private void Awake()
         {
-            _carDetector = GetComponentInChildren<CarDetector>();
             _movement = GetComponent<AIMovement>();
         }
 
@@ -74,6 +75,9 @@ namespace AI
             if (collision.gameObject.CompareTag("AI"))
             {
                 StartCoroutine(ResetCar());
+            } else if (collision.gameObject.CompareTag("Car"))
+            {
+                _menuManager.GameOver();
             }
         }
 
@@ -90,22 +94,8 @@ namespace AI
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.name);
-            if (other.CompareTag("Car"))
-            {
-                Debug.Log("Player in front");
-                StopCar();
-            }
-
-            return;
             if (other.CompareTag("AI") || other.CompareTag("Car") )
             {
-                // if (!_carDetector.ShouldGiveWay(other.transform))
-                // {
-                //     Debug.Log("Other car seems to not be going in the same direction");
-                //     return;
-                // }
-
                 carInFront = other.gameObject;
                 StopCar();
             } else if (other.CompareTag("StopTrigger"))
