@@ -22,7 +22,6 @@ namespace Violation
         {
             _audioManager.PlaySpeedViolation();
             speedViolations++;
-            Debug.Log("SPEED" + speedViolations);
         }
 
         public void OnRightOfWayViolation()
@@ -67,5 +66,12 @@ namespace Violation
         {
             return indicatorViolations;
         }
+        public void Rest()
+        {
+       redLightViolations = 0;
+        speedViolations = 0;
+        rightOfWayViolations = 0;
+        fullStopViolations = 0;
+       indicatorViolations = 0;        }
     }
 }

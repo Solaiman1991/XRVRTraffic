@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using Violation;
@@ -16,6 +17,9 @@ public class DrivingReportMenuController : MonoBehaviour
     void Start()
     {
         _menuManager = GetComponentInParent<MenuManager>();
+    }
+    public void OnEnable()
+    {
         redLightViolationsResult.text = ViolationManager.GetNoOfRedLightViolations().ToString();
         speedViolationsResult.text = ViolationManager.GetNoOfSpeedViolations().ToString();
         rightOfWayViolationsResult.text = ViolationManager.GetNoOfRightOfWayViolations().ToString();
@@ -29,6 +33,10 @@ public class DrivingReportMenuController : MonoBehaviour
         _menuManager.SpawnMainMenu();
     }
 
+    public void OnDisable()
+    {
+        ViolationManager.Rest();
+    }
     public void SetGameOver()
     {
         Header.text = "You Failed Numbnut";
