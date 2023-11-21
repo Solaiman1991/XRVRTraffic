@@ -25,6 +25,7 @@ namespace Car
         [SerializeField] private AudioClip slowDownAudio;
         [SerializeField] private AudioClip rightOfWayAudio;
         [SerializeField] private AudioClip fullStopAudio;
+        [SerializeField] private AudioClip gameOver;
         
         private AudioSource audioSource;
 
@@ -177,6 +178,13 @@ namespace Car
             if (audioSource.isPlaying) return;
             
             audioSource.clip = fullStopAudio;
+            audioSource.Play();
+        }
+
+        public void PlayGameOver()
+        {
+            audioSource.Stop();
+            audioSource.clip = gameOver;
             audioSource.Play();
         }
     }

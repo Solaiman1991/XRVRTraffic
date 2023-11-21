@@ -77,7 +77,7 @@ namespace AI
                 StartCoroutine(ResetCar());
             } else if (collision.gameObject.CompareTag("Car"))
             {
-                _menuManager.GameOver();
+                _menuManager.SpawnGameOverMenu();
             }
         }
 

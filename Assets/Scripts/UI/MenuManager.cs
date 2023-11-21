@@ -1,16 +1,20 @@
+using System.Collections;
+using Car;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 
 public class MenuManager : MonoBehaviour
 {
+    public ResetCar resetCar;
+    public CarAudioSourceManager CarAudioSource;
+    public DrivingInstructorAudioManager Audio;
     public GameObject MainMenuStartButton;
     public GameObject ResultStartButton;
-    public GameObject Background;
 
     public GameObject MainMenu;
-    public GameObject ResultMenu;
-    
+    public DrivingReportMenuController ResultMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,42 +24,51 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void SpawnMainMenu()
     {
         SpawnMenu(MainMenu);
-       EventSystem.current.SetSelectedGameObject(MainMenuStartButton);
+        EventSystem.current.SetSelectedGameObject(MainMenuStartButton);
     }
 
     public void SpawnResultMenu()
     {
-        SpawnMenu(ResultMenu);
+        CarAudioSource.StopEngine();
+        SpawnMenu(ResultMenu.gameObject);
         EventSystem.current.SetSelectedGameObject(ResultStartButton);
     }
 
-    public  void CloseMainMenu()
+    public void CloseMainMenu()
     {
+        CarAudioSource.StartEngine();
         DeSpwanMenu(MainMenu);
     }
-    
+
     public void CloseResultMenu()
     {
-       DeSpwanMenu(ResultMenu);
+        DeSpwanMenu(ResultMenu.gameObject);
+        ResultMenu.Header.text = "Report";
     }
 
     private void SpawnMenu(GameObject menu)
     {
         Time.timeScale = 0;
-        Background.SetActive(true);
         menu.SetActive(true);
     }
 
     private void DeSpwanMenu(GameObject menu)
     {
         Time.timeScale = 1;
-        Background.SetActive(false);
         menu.SetActive(false);
+    }
+
+    public void SpawnGameOverMenu()
+    {
+        resetCar.ResetToInitial();
+        SpawnMenu(ResultMenu.gameObject);
+        ResultMenu.SetGameOver();
+        Audio.PlayGameOver();
+        EventSystem.current.SetSelectedGameObject(ResultStartButton);
     }
 }
