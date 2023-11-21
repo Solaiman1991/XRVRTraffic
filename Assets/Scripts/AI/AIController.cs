@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using Car;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -21,6 +22,9 @@ namespace AI
 
         [SerializeField] private GameObject carInFront;
 
+        private Vector3 _initialPosition;
+        private Quaternion _initialRotation;
+
         private void Awake()
         {
             _carDetector = GetComponentInChildren<CarDetector>();
@@ -29,6 +33,8 @@ namespace AI
 
         private void Start()
         {
+            _initialPosition = transform.position;
+            _initialRotation = transform.rotation;
             currentNode = _route.GetCurrentNode();
             _movement.SetDestination(currentNode);
             StartCar();
@@ -62,12 +68,37 @@ namespace AI
         {
             _movement.StartDriving();
         }
-        
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("AI"))
+            {
+                StartCoroutine(ResetCar());
+            }
+        }
+
+        private IEnumerator ResetCar()
+        {
+            _movement.ForceStop();
+            transform.rotation = _initialRotation;
+            transform.position = _initialPosition;
+            _route.ResetRoute();
+            currentNode = _route.GetCurrentNode();
+            yield return new WaitForSeconds(2f);
+            _movement.StartDriving();
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            
-            if (other.CompareTag("AI") )
+            Debug.Log(other.name);
+            if (other.CompareTag("Car"))
+            {
+                Debug.Log("Player in front");
+                StopCar();
+            }
+
+            return;
+            if (other.CompareTag("AI") || other.CompareTag("Car") )
             {
                 // if (!_carDetector.ShouldGiveWay(other.transform))
                 // {

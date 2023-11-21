@@ -50,14 +50,14 @@ public class InputManager : MonoBehaviour, IInputManager
 
     void OnThrottle(InputValue value)
     {
-        ThrottleValue = Mathf.InverseLerp(-1f, 1f,value.Get<float>());
-        // ThrottleValue = value.Get<float>();
+        //ThrottleValue = Mathf.InverseLerp(-1f, 1f,value.Get<float>());
+         ThrottleValue = value.Get<float>();
     }
 
     void OnBrake(InputValue value)
     {
-        BrakeValue = Mathf.InverseLerp(-1f, 1f,value.Get<float>());
-        // BrakeValue = value.Get<float>();
+        //BrakeValue = Mathf.InverseLerp(-1f, 1f,value.Get<float>());
+         BrakeValue = value.Get<float>();
     }
 
     void OnGearUp(InputValue value)
