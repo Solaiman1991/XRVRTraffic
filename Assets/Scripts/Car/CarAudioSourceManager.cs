@@ -11,6 +11,7 @@ public class CarAudioSourceManager : MonoBehaviour
     [SerializeField] private AudioClip startClip;
     [SerializeField] private AudioClip runClip;
     [SerializeField] private AudioClip stopClip;
+    bool isEngineRunning = false;
 
     private void Start()
     {
@@ -19,34 +20,18 @@ public class CarAudioSourceManager : MonoBehaviour
         _inputManager = GetComponent<IInputManager>();
     }
 
-    private void Update()
+
+    public void StartEngine()
     {
-        PlayAudio();
+        StartCoroutine(StartEngineRoutine());
     }
 
-    bool isEngineRunning = false;
-
-    private void PlayAudio()
+    public void StopEngine()
     {
-        if (_inputManager.GetStartEngineInput())
-        {
-            if (!isEngineRunning)
-            {
-                StartCoroutine(StartEngine());
-            }
-        }
-        /*
-             if (Input.GetKeyDown(KeyCode.O)) // Engine off key
-             {
-                 if (isEngineRunning)
-                 {
-                     StartCoroutine(StopEngine());
-                 }
-             }
-             */
+        StartCoroutine(StopEngineRoutine());
     }
 
-    IEnumerator StartEngine()
+    IEnumerator StartEngineRoutine()
     {
         Audio_Runing.clip = startClip;
         Audio_Runing.volume = 0.3f;
@@ -74,7 +59,7 @@ public class CarAudioSourceManager : MonoBehaviour
         }
     }
 
-    IEnumerator StopEngine()
+    IEnumerator StopEngineRoutine()
     {
         Audio_Runing.clip = stopClip;
         Audio_Runing.volume = 1f;
@@ -86,12 +71,5 @@ public class CarAudioSourceManager : MonoBehaviour
 
         isEngineRunning = false;
     }
-
-    public void StopAllAudio()
-    {
-        StopCoroutine(StartEngine());
-        StopCoroutine(RunEngine());
-        StopCoroutine(StopEngine());
-        Audio_Runing.Stop();
-    }
+    
 }
