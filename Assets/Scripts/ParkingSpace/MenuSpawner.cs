@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Car.Gear;
 using UnityEngine;
@@ -45,10 +46,20 @@ public class MenuSpawner : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            isInsideCollider = false;
-            timeInsideCollider = 0f;
-            _menuActive = false;
+            reset();
         }
+    }
+
+    private void OnDisable()
+    {
+        reset();
+    }
+
+    private void reset()
+    {
+        isInsideCollider = false;
+        timeInsideCollider = 0f;
+        _menuActive = false;
     }
 
     private IEnumerator endLesson()

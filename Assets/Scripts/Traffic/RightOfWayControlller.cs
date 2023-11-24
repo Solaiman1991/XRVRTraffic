@@ -56,7 +56,6 @@ public class RightOfWayControlller : MonoBehaviour
     {
         if (_currentlyTracked == null) return;
         var currentDistance = Vector3.Distance(_currentlyTracked.transform.position, centerPoint.position);
-        Debug.Log("currentDis: " + currentDistance);
         if (currentDistance <= _lastDistance)
         {
             _lastDistance = currentDistance;

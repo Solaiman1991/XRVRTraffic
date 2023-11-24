@@ -10,6 +10,7 @@ public class SpeedLimitSignController : MonoBehaviour
 
     private void Start()
     {
+        speedLimitManager = FindObjectOfType<SpeedLimitManager>();
     }
 
 
