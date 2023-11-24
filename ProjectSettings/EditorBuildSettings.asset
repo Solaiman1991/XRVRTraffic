@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/URBAN CITY PACKAGE/Scene/TrafficCity Solaiman.unity
+    path: Assets/TrafficCity.unity
     guid: f2b0b85dfbe0bdb4ca041397558c922c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 19dfb8305c708b34c831264ae88b0dc0,

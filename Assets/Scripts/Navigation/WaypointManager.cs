@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,23 +7,21 @@ namespace Navigation
 {
     public class WaypointManager : MonoBehaviour
     {
-        private Transform arrowsTransform;
         public List<GameObject> arrows = new();
 
-        [SerializeField]
-        GameObject parkingSpotObject;
-        void Start()
+        [SerializeField] private GameObject parkingSpotObject;
+
+        private Transform arrowsTransform;
+
+        private void Start()
         {
             arrowsTransform = transform.Find("Arrows");
             foreach (Transform child in arrowsTransform)
-            {
                 if (child.CompareTag("Arrow"))
-                {
                     arrows.Add(child.gameObject);
-                }
-            }
         }
-        void OnDisable()
+
+        private void OnDisable()
         {
             parkingSpotObject.SetActive(false);
         }
@@ -37,14 +34,13 @@ namespace Navigation
                 parkingSpotObject.SetActive(true);
                 return ArrowDirection.Direction.Stop;
             }
+
             foreach (var arrow in arrows.Where(arrow => waypointIndex == GetNumber(arrow.name)))
             {
                 arrow.SetActive(true);
-                if (waypointIndex > 1)
-                {
-                    arrows[waypointIndex - 2].SetActive(false);
-                }
+                if (waypointIndex > 1) arrows[waypointIndex - 2].SetActive(false);
             }
+
             return arrows[waypointIndex - 1].GetComponent<ArrowDirection>().GetDirection();
         }
 

@@ -1,19 +1,15 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AiRoute : MonoBehaviour
 {
     [SerializeField] private List<Transform> waypoints;
-    [SerializeField]
-    private int currentNodeIndex = 0;
+
+    [SerializeField] private int currentNodeIndex;
+
     private void Awake()
     {
-        foreach (Transform child in transform)
-        {
-            waypoints.Add(child);
-        }
+        foreach (Transform child in transform) waypoints.Add(child);
     }
 
     private void UpdateRoute()
@@ -37,6 +33,4 @@ public class AiRoute : MonoBehaviour
         UpdateRoute();
         return GetCurrentNode();
     }
-
-
 }

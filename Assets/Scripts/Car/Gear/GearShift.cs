@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +5,17 @@ namespace Car.Gear
 {
     public class GearShift : MonoBehaviour
     {
-        private Image gearPickerImage;
         public Sprite gearDriveSprite;
         public Sprite gearNeutralSprite;
         public Sprite gearReverseSprite;
         public Sprite gearParkSprite;
+        private Image gearPickerImage;
+
+        private void Start()
+        {
+            gearPickerImage = GetComponent<Image>();
+            UpdateGearPosition(Gear.Park);
+        }
 
         public void UpdateGearPosition(Gear newGear)
         {
@@ -29,12 +34,6 @@ namespace Car.Gear
                     gearPickerImage.sprite = gearParkSprite;
                     break;
             }
-        }
-
-        private void Start()
-        {
-            gearPickerImage = GetComponent<Image>();
-            UpdateGearPosition(Gear.Park);
         }
     }
 }

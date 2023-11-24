@@ -1,30 +1,32 @@
 ﻿using UnityEngine;
 
-
 [RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
 public class Retroreflector_MirrorFlip : MonoBehaviour
 {
-    new Camera camera;
     public bool flipHorizontal;
-    void Awake()
+    private new Camera camera;
+
+    private void Awake()
     {
-        camera = this.GetComponent<Camera>();
+        camera = GetComponent<Camera>();
     }
-    void OnPreCull()
+
+    private void OnPostRender()
+    {
+        GL.invertCulling = false;
+    }
+
+    private void OnPreCull()
     {
         camera.ResetWorldToCameraMatrix();
         camera.ResetProjectionMatrix();
-        Vector3 scale = new Vector3(flipHorizontal ? -1 : 1, 1, 1);
+        var scale = new Vector3(flipHorizontal ? -1 : 1, 1, 1);
         camera.projectionMatrix = camera.projectionMatrix * Matrix4x4.Scale(scale);
     }
-    void OnPreRender()
+
+    private void OnPreRender()
     {
         GL.invertCulling = flipHorizontal;
-    }
-
-    void OnPostRender()
-    {
-        GL.invertCulling = false;
     }
 }

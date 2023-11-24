@@ -1,4 +1,3 @@
-using System;
 using Traffic;
 using UnityEngine;
 using Violation;
@@ -16,10 +15,11 @@ public class RedLightDetector : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            TrafficLightController trafficLightController = GetComponentInParent<TrafficLightController>();
-            if (trafficLightController != null && trafficLightController.GetCurrentState() == TrafficLightController.LightState.Red)
+            var trafficLightController = GetComponentInParent<TrafficLightController>();
+            if (trafficLightController != null &&
+                trafficLightController.GetCurrentState() == TrafficLightController.LightState.Red)
             {
-                RedLightController redLightController = FindObjectOfType<RedLightController>();
+                var redLightController = FindObjectOfType<RedLightController>();
                 if (redLightController != null)
                 {
                     redLightController.IncrementViolationCount();

@@ -1,20 +1,24 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Car.Gear;
 using UnityEngine;
 
 public class ResetCar : MonoBehaviour
 {
-    [SerializeField] private GameObject car;
+    private AutomaticGearBox _gearBox;
+    private Vector3 _startPosition;
+    private Quaternion _startRotation;
+    private void Start()
+    {
+        _gearBox = GetComponent<AutomaticGearBox>();
+        _startRotation = transform.rotation;
+        _startPosition = transform.position;
+    }
 
     public void ResetToInitial()
     {
-        var gearBoxManger = car.GetComponentInChildren<AutomaticGearBox>();
-        
-        gearBoxManger.ShiftToPark();
-        car.transform.rotation = gameObject.transform.rotation;
-        car.transform.position = transform.position;
+        // putting the car in park stops the cars momentum
+        _gearBox.ShiftToPark();
+        transform.rotation = _startRotation;
+        transform.position = _startPosition;
     }
-    
 }

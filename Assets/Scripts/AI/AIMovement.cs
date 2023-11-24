@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class AIMovement : MonoBehaviour
 {
@@ -12,8 +9,8 @@ public class AIMovement : MonoBehaviour
     [SerializeField] private float throttleLerpTime = 1f;
     [SerializeField] private float stopLerpTime = 0.5f;
     [SerializeField] private float moveSpeed = 4f;
-    private Vector3 direction;
     private Rigidbody _rb;
+    private Vector3 direction;
 
     private void Awake()
     {
@@ -71,6 +68,7 @@ public class AIMovement : MonoBehaviour
             throttle = Mathf.Lerp(currentThrottle, 0f, (Time.time - startTime) / stopLerpTime);
             yield return null;
         }
+
         throttle = 0f;
         FreezeRigidBody();
     }
@@ -89,14 +87,14 @@ public class AIMovement : MonoBehaviour
     {
         var startTime = Time.time;
         var initialThrottle = throttle;
-        
+
         UnFreezeRigidBody();
         while (Time.time - startTime <= throttleLerpTime)
         {
             throttle = Mathf.Lerp(initialThrottle, targetThrottle, (Time.time - startTime) / throttleLerpTime);
             yield return null;
         }
+
         throttle = targetThrottle;
     }
-
 }

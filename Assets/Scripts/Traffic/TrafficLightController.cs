@@ -4,8 +4,14 @@ namespace Traffic
 {
     public class TrafficLightController : MonoBehaviour
     {
-        private CarBlocker _carBlocker;
-    
+        public enum LightState
+        {
+            Green,
+            Yellow,
+            Red,
+            RedAndYellow
+        }
+
         public GameObject upperGreenLightSphere;
         public GameObject upperYellowLightSphere;
         public GameObject upperRedLightSphere;
@@ -29,27 +35,27 @@ namespace Traffic
         public float greenTime = 5f;
         public float yellowTime = 2f;
         public float redTime = 5f;
-        public float redYellowTime = 2f; 
-    
-        private float timer;
-        public enum LightState { Green, Yellow, Red, RedAndYellow }
+        public float redYellowTime = 2f;
         public LightState currentState;
 
-        public bool isManagedByIntersectionController = false;
+        public bool isManagedByIntersectionController;
+        private CarBlocker _carBlocker;
+
+        private float timer;
 
         private void Awake()
         {
             _carBlocker = GetComponentInChildren<CarBlocker>();
         }
 
-        void Start()
+        private void Start()
         {
             currentState = LightState.Red;
             timer = redTime;
             UpdateLights();
         }
 
-        void Update()
+        private void Update()
         {
             if (!isManagedByIntersectionController)
             {
@@ -76,6 +82,7 @@ namespace Traffic
                             timer = greenTime;
                             break;
                     }
+
                     UpdateLights();
                 }
             }
@@ -83,16 +90,19 @@ namespace Traffic
 
         private void UpdateLights()
         {
-            UpdateLightSet(upperGreenLightSphere, upperYellowLightSphere, upperRedLightSphere, upperGreenLight, upperYellowLight, upperRedLight);
+            UpdateLightSet(upperGreenLightSphere, upperYellowLightSphere, upperRedLightSphere, upperGreenLight,
+                upperYellowLight, upperRedLight);
 
-            UpdateLightSet(lowerGreenLightSphere, lowerYellowLightSphere, lowerRedLightSphere, lowerGreenLight, lowerYellowLight, lowerRedLight);
+            UpdateLightSet(lowerGreenLightSphere, lowerYellowLightSphere, lowerRedLightSphere, lowerGreenLight,
+                lowerYellowLight, lowerRedLight);
         }
 
-        private void UpdateLightSet(GameObject greenSphere, GameObject yellowSphere, GameObject redSphere, Light greenLight, Light yellowLight, Light redLight)
+        private void UpdateLightSet(GameObject greenSphere, GameObject yellowSphere, GameObject redSphere,
+            Light greenLight, Light yellowLight, Light redLight)
         {
-            bool greenOn = currentState == LightState.Green;
-            bool yellowOn = currentState == LightState.Yellow || currentState == LightState.RedAndYellow;
-            bool redOn = currentState == LightState.Red || currentState == LightState.RedAndYellow;
+            var greenOn = currentState == LightState.Green;
+            var yellowOn = currentState == LightState.Yellow || currentState == LightState.RedAndYellow;
+            var redOn = currentState == LightState.Red || currentState == LightState.RedAndYellow;
 
             greenSphere.GetComponent<Renderer>().material = greenOn ? greenOnMaterial : greenOffMaterial;
             yellowSphere.GetComponent<Renderer>().material = yellowOn ? yellowOnMaterial : yellowOffMaterial;
@@ -117,7 +127,7 @@ namespace Traffic
             timer = yellowTime;
             UpdateLights();
             isManagedByIntersectionController = true;
-        
+
             _carBlocker.BlockCars();
         }
 
@@ -128,21 +138,20 @@ namespace Traffic
             UpdateLights();
             isManagedByIntersectionController = true;
         }
-    
+
         public void SetRedAndYellowLight()
         {
             currentState = LightState.RedAndYellow;
             timer = redYellowTime;
             UpdateLights();
             isManagedByIntersectionController = true;
-        
+
             _carBlocker.UnblockCars();
         }
-    
+
         public LightState GetCurrentState()
         {
             return currentState;
         }
-    
     }
 }

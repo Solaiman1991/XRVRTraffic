@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using AI;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Traffic
@@ -10,10 +8,15 @@ namespace Traffic
     public class CarBlocker : MonoBehaviour
     {
         [SerializeField] private GameObject stopTrigger;
-        [SerializeField]
-        private List<AIController> cars;
-        
-       public void BlockCars()
+
+        [SerializeField] private List<AIController> cars;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("AI")) cars.Add(other.GetComponent<AIController>());
+        }
+
+        public void BlockCars()
         {
             stopTrigger.SetActive(true);
         }
@@ -31,14 +34,6 @@ namespace Traffic
             {
                 car.StartCar();
                 yield return new WaitForSeconds(2f);
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("AI"))
-            {
-                cars.Add(other.GetComponent<AIController>());
             }
         }
     }

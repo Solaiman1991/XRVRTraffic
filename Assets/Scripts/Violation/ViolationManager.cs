@@ -6,12 +6,12 @@ namespace Violation
     public class ViolationManager : MonoBehaviour
     {
         [SerializeField] private DrivingInstructorAudioManager _audioManager;
-        private int redLightViolations = 0;
-        private int speedViolations = 0;
-        private  int rightOfWayViolations = 0;
-        private  int fullStopViolations = 0;
-        private  int indicatorViolations = 0;
-        
+        private int fullStopViolations;
+        private int indicatorViolations;
+        private int redLightViolations;
+        private int rightOfWayViolations;
+        private int speedViolations;
+
         public void OnRedLightViolation()
         {
             _audioManager.PlayRedLightViolation();
@@ -41,7 +41,7 @@ namespace Violation
             _audioManager.PlayIndicatorViolation();
             indicatorViolations++;
         }
-        
+
         public int GetNoOfRedLightViolations()
         {
             return redLightViolations;
@@ -66,12 +66,14 @@ namespace Violation
         {
             return indicatorViolations;
         }
+
         public void Rest()
         {
-       redLightViolations = 0;
-        speedViolations = 0;
-        rightOfWayViolations = 0;
-        fullStopViolations = 0;
-       indicatorViolations = 0;        }
+            redLightViolations = 0;
+            speedViolations = 0;
+            rightOfWayViolations = 0;
+            fullStopViolations = 0;
+            indicatorViolations = 0;
+        }
     }
 }

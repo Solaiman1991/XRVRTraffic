@@ -1,15 +1,14 @@
-using System;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Violation;
 
 public class SharkTeethLine : MonoBehaviour
 {
+    public static int failureCount;
     [SerializeField] private TextMeshProUGUI resultText;
-    private WheelBaseManager _wheelBaseManager;
-    public static int failureCount = 0; 
-    public float speedLimit = 2f; 
+    public float speedLimit = 2f;
     private ViolationManager _violationManager;
+    private WheelBaseManager _wheelBaseManager;
 
     private void Start()
     {
@@ -19,9 +18,9 @@ public class SharkTeethLine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Car") && _wheelBaseManager != null) 
+        if (other.CompareTag("Car") && _wheelBaseManager != null)
         {
-            float speed = _wheelBaseManager.speed;
+            var speed = _wheelBaseManager.speed;
             if (speed > speedLimit)
             {
                 failureCount++;
@@ -33,9 +32,6 @@ public class SharkTeethLine : MonoBehaviour
 
     private void UpdateResultText()
     {
-        if (resultText != null)
-        {
-            resultText.text = "U.Vigepligt Violations: " + failureCount.ToString();
-        }
+        if (resultText != null) resultText.text = "U.Vigepligt Violations: " + failureCount;
     }
 }

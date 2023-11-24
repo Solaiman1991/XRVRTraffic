@@ -20,9 +20,8 @@ public class WheelBase : MonoBehaviour
     private void Start()
     {
         _gearBox = GetComponent<AutomaticGearBox>();
-        
     }
-    
+
     public void ApplyToAll(Action<Wheel> action)
     {
         action(FRWheel);
@@ -42,7 +41,7 @@ public class WheelBase : MonoBehaviour
         action(RRWheel);
         action(RLWheel);
     }
-    
+
 
     public void ApplyThrottle(float throttle)
     {
@@ -60,7 +59,7 @@ public class WheelBase : MonoBehaviour
                 throttle = 0;
                 break;
             case Gear.Reverse:
-                throttle *= -1; 
+                throttle *= -1;
                 break;
             case Gear.Drive:
                 break;
@@ -85,12 +84,12 @@ public class WheelBase : MonoBehaviour
 
     private void ApplyParkingBrake()
     {
-        float parkingBrakeTorque = 10000; 
+        float parkingBrakeTorque = 10000;
         Action<Wheel> brakeAction = wheel => wheel.ApplyBreak(parkingBrakeTorque, 1f);
         ApplyToAll(brakeAction);
     }
 
-   
+
     public void ApplyBreak(float throttleInput)
     {
         Action<Wheel> torqueAction = wheel => wheel.ApplyBreak(brakeTorque, throttleInput);
@@ -100,7 +99,7 @@ public class WheelBase : MonoBehaviour
 
     public void ApplySteering(float steeringInput, float speed)
     {
-        float steeringAngle = steeringInput * steeringCurve.Evaluate(speed);
+        var steeringAngle = steeringInput * steeringCurve.Evaluate(speed);
         Action<Wheel> steeringAction = wheel => wheel.ApplySteer(steeringAngle);
 
         ApplyToFrontWheels(steeringAction);

@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Violation;
 
 public class TurnLeftCheckManager : MonoBehaviour
 {
+    public static int failureCount;
     public ArrowBlinker arrowBlinker;
-    private bool firstColliderHit = false;
-    private bool secondColliderHit = false;
-    public static int failureCount = 0;
     private ViolationManager _violationManager;
+    private bool firstColliderHit;
+    private bool secondColliderHit;
 
     private void Start()
     {
@@ -40,6 +37,7 @@ public class TurnLeftCheckManager : MonoBehaviour
                 _violationManager.OnIndicatorViolation();
                 Debug.Log("Blinklys venstre fejl count: " + failureCount);
             }
+
             ResetColliders();
         }
     }

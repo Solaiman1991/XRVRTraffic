@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using Traffic;
+using UnityEngine;
 
 public class IntersectionController : MonoBehaviour
 {
@@ -10,15 +10,15 @@ public class IntersectionController : MonoBehaviour
     public TrafficLightController westTrafficLight;
 
     public float greenLightDuration = 10f;
-    public float allRedDuration = 2f; 
+    public float allRedDuration = 2f;
     public float redYellowTransitionDuration = 2f;
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(ControlIntersection());
     }
 
-    IEnumerator ControlIntersection()
+    private IEnumerator ControlIntersection()
     {
         while (true)
         {
@@ -36,7 +36,7 @@ public class IntersectionController : MonoBehaviour
         }
     }
 
-    IEnumerator ManageTrafficLightSequence(TrafficLightController light1, TrafficLightController light2)
+    private IEnumerator ManageTrafficLightSequence(TrafficLightController light1, TrafficLightController light2)
     {
         // Red to Red + Yellow 
         light1.SetRedAndYellowLight();

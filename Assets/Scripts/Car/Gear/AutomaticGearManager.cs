@@ -10,7 +10,7 @@ public class AutomaticGearManager : MonoBehaviour
     private IInputManager _inputManager;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _gearBox = GetComponent<AutomaticGearBox>();
         _inputManager = GetComponent<IInputManager>();
@@ -18,13 +18,10 @@ public class AutomaticGearManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         var shiftedGear = shiftGear();
-        if (shiftedGear)
-        {
-            _gearShift.UpdateGearPosition(_gearBox.GetCurrentGear());
-        }
+        if (shiftedGear) _gearShift.UpdateGearPosition(_gearBox.GetCurrentGear());
     }
 
     private bool shiftGear()
@@ -46,19 +43,19 @@ public class AutomaticGearManager : MonoBehaviour
             _gearBox.ShiftToDrive();
             return true;
         }
-        
+
         if (_inputManager.GetGearReverseInput())
         {
             _gearBox.ShiftToReverse();
             return true;
         }
-        
+
         if (_inputManager.GetGearParkInput())
         {
             _gearBox.ShiftToPark();
             return true;
         }
-        
+
         if (_inputManager.GetGearNeutralInput())
         {
             _gearBox.ShiftToNeutral();
@@ -67,5 +64,4 @@ public class AutomaticGearManager : MonoBehaviour
 
         return false;
     }
-    
 }

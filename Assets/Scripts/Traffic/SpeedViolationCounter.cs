@@ -1,21 +1,20 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Violation;
 
 public class SpeedViolationCounter : MonoBehaviour
 {
+    private const float SpeedThreshold = 37f;
+    public static int failureCount;
     public WheelBaseManager WheelBaseManager;
-    [SerializeField] private TextMeshProUGUI resultText; 
-    private const float SpeedThreshold = 37f; 
-    private bool speedExceeded = false;
-    public static int failureCount = 0; 
+    [SerializeField] private TextMeshProUGUI resultText;
     [SerializeField] private ViolationManager _violationManager;
+    private bool speedExceeded;
 
-    void Update()
+    private void Update()
     {
         if (WheelBaseManager != null && resultText != null)
         {
-
             if (WheelBaseManager.speed > SpeedThreshold && !speedExceeded)
             {
                 speedExceeded = true;
@@ -30,9 +29,8 @@ public class SpeedViolationCounter : MonoBehaviour
         }
     }
 
-    void UpdateResultText()
+    private void UpdateResultText()
     {
-        resultText.text = "Speed Violations: " + failureCount.ToString();
+        resultText.text = "Speed Violations: " + failureCount;
     }
 }
-    

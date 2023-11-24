@@ -8,7 +8,7 @@ namespace Car
 
         public Transform SteeringWheel;
         public float CurrentWheelAngle;
-        
+
         private WheelBase _wheelBase;
 
         private void Start()
@@ -25,7 +25,7 @@ namespace Car
         {
             CurrentWheelAngle = _wheelBase.FRWheel.Collider.steerAngle;
 
-            Vector3 locaRv3 = SteeringWheel.localRotation.eulerAngles;
+            var locaRv3 = SteeringWheel.localRotation.eulerAngles;
             locaRv3.z = -CurrentWheelAngle * ratio;
             SteeringWheel.localRotation = Quaternion.Euler(locaRv3);
         }

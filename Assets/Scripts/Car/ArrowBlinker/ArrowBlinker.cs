@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class ArrowBlinker : MonoBehaviour
 {
@@ -7,14 +7,14 @@ public class ArrowBlinker : MonoBehaviour
     public GameObject leftArrow;
     public GameObject havariblink;
 
-    public float blinkInterval = 0.5f; 
+    public float blinkInterval = 0.5f;
+    private Coroutine havariblinkRoutine;
+    private bool isLeftBlinking;
+
+    private bool isRightBlinking;
+    private Coroutine leftBlinkRoutine;
 
     private Coroutine rightBlinkRoutine;
-    private Coroutine leftBlinkRoutine;
-    private Coroutine havariblinkRoutine;
-    
-    private bool isRightBlinking = false;
-    private bool isLeftBlinking = false;
 
     private void Start()
     {
@@ -25,37 +25,27 @@ public class ArrowBlinker : MonoBehaviour
 
     public void ToggleLeftBlinking()
     {
-        isLeftBlinking = !isLeftBlinking; 
+        isLeftBlinking = !isLeftBlinking;
         ToggleBlinking(ref leftBlinkRoutine, leftArrow);
         StopBlinking(ref rightBlinkRoutine, rightArrow);
 
-        if (havariblinkRoutine != null) 
-        {
-            StopBlinking(ref havariblinkRoutine, havariblink);
-        }
+        if (havariblinkRoutine != null) StopBlinking(ref havariblinkRoutine, havariblink);
     }
 
     public void ToggleRightBlinking()
     {
-        isRightBlinking = !isRightBlinking; 
+        isRightBlinking = !isRightBlinking;
         ToggleBlinking(ref rightBlinkRoutine, rightArrow);
         StopBlinking(ref leftBlinkRoutine, leftArrow);
-        if (havariblinkRoutine != null) 
-        {
-            StopBlinking(ref havariblinkRoutine, havariblink);
-        }
+        if (havariblinkRoutine != null) StopBlinking(ref havariblinkRoutine, havariblink);
     }
 
     public void ToggleHavariBlinking()
     {
         if (havariblinkRoutine != null)
-        {
             StopBlinking(ref havariblinkRoutine, havariblink);
-        }
         else
-        {
             havariblinkRoutine = StartCoroutine(BlinkArrow(havariblink));
-        }
     }
 
     private void ToggleBlinking(ref Coroutine blinkRoutine, GameObject arrow)

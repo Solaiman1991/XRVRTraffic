@@ -7,10 +7,9 @@ public class RouteManager : MonoBehaviour
     [SerializeField] private GameObject highwayRouteObject;
     [SerializeField] private GameObject FreeRoamRouteObject;
 
-    [SerializeField]
-    DrivingInstructorAudioManager _audioManager;
+    [SerializeField] private DrivingInstructorAudioManager _audioManager;
 
-    
+
     public void StartCityRoute()
     {
         cityRouteObject.SetActive(true);
@@ -22,11 +21,13 @@ public class RouteManager : MonoBehaviour
         highwayRouteObject.SetActive(true);
         _audioManager.PlayStartHighway();
     }
+
     public void StartFreeRoam()
     {
         FreeRoamRouteObject.SetActive(true);
         _audioManager.PlayStartFreeRoam();
     }
+
     public void StopRoute()
     {
         _audioManager.PlayFinishLesson();
@@ -34,5 +35,4 @@ public class RouteManager : MonoBehaviour
         highwayRouteObject.SetActive(false);
         FreeRoamRouteObject.SetActive(false);
     }
-    
 }

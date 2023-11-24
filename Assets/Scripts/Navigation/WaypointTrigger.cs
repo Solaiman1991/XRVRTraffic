@@ -5,9 +5,9 @@ namespace Navigation
 {
     public class WaypointTrigger : MonoBehaviour
     {
-        private WaypointManager waypointManager;
-        private DrivingInstructorAudioManager audioManager;
         private ArrowDirection.Direction arrowDirection;
+        private DrivingInstructorAudioManager audioManager;
+        private WaypointManager waypointManager;
 
         private void Start()
         {

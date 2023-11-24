@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using Input;
-using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class RecenterOrigin : MonoBehaviour
 {
@@ -12,17 +8,17 @@ public class RecenterOrigin : MonoBehaviour
     public Transform Origin;
 
     public Transform Target;
-    
+
     private IInputManager _inputManager;
 
-    bool missingFirstRecenter = true;
+    private bool missingFirstRecenter = true;
 
-    void Start()
+    private void Start()
     {
         _inputManager = GetComponentInParent<IInputManager>();
     }
 
-    void Update()
+    private void Update()
     {
         //This is something that only needs to be done when the game starts.
         //However it does not work to put it in the "Start" position, as the position of "Head" aka the main camera is not set yet.
@@ -32,13 +28,11 @@ public class RecenterOrigin : MonoBehaviour
             Recenter();
             missingFirstRecenter = false;
         }
-        if (_inputManager.GetRecenterInput())
-        {
-            Recenter();
-        }
+
+        if (_inputManager.GetRecenterInput()) Recenter();
     }
 
-    void Recenter()
+    private void Recenter()
     {
         var rotationAngleY = Target.rotation.eulerAngles.y - Head.transform.rotation.eulerAngles.y;
         Origin.transform.Rotate(0, rotationAngleY, 0);

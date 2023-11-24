@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] private RouteManager _routeManager;
+
     private MenuManager _menuManager;
 
-    [SerializeField]
-    RouteManager _routeManager;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _menuManager = GetComponentInParent<MenuManager>();
     }

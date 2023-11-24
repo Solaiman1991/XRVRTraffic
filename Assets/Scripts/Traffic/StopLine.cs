@@ -1,20 +1,23 @@
-using System;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Violation;
 
 public class StopLine : MonoBehaviour
 {
+    private static int violationCount;
     public TextMeshProUGUI violationText;
-    private float timeAtStopLine = 0f;
-    private bool isCarAtStopLine = false;
-    
-    private static int violationCount = 0; 
     private ViolationManager _violationManager;
+    private bool isCarAtStopLine;
+    private float timeAtStopLine;
 
     private void Start()
     {
         _violationManager = FindFirstObjectByType<ViolationManager>();
+    }
+
+    private void Update()
+    {
+        if (isCarAtStopLine) timeAtStopLine += Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +25,7 @@ public class StopLine : MonoBehaviour
         if (other.CompareTag("Car"))
         {
             isCarAtStopLine = true;
-            timeAtStopLine = 0f; 
+            timeAtStopLine = 0f;
         }
     }
 
@@ -40,19 +43,8 @@ public class StopLine : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (isCarAtStopLine)
-        {
-            timeAtStopLine += Time.deltaTime;
-        }
-    }
-
     private void UpdateViolationText()
     {
-        if (violationText != null)
-        {
-            violationText.text = "Stopline Violations: " + violationCount.ToString();
-        }
+        if (violationText != null) violationText.text = "Stopline Violations: " + violationCount;
     }
 }

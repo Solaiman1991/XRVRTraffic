@@ -1,11 +1,11 @@
-using UnityEngine;
 using TMPro;
-using Traffic;
-using Violation; // Include the TextMeshPro namespace
+using UnityEngine;
+
+// Include the TextMeshPro namespace
 
 public class RedLightController : MonoBehaviour
 {
-    public int redLightViolations = 0;
+    public int redLightViolations;
     public TextMeshProUGUI violationsText;
 
     private void Start()
@@ -13,25 +13,11 @@ public class RedLightController : MonoBehaviour
         UpdateViolationsText();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        TrafficLightController trafficLight = other.GetComponentInParent<TrafficLightController>();
-
-        if (trafficLight != null && trafficLight.GetCurrentState() == TrafficLightController.LightState.Red)
-        {
-            redLightViolations++; 
-            UpdateViolationsText();
-        }
-    }
-
     private void UpdateViolationsText()
     {
-        if (violationsText != null)
-        {
-            violationsText.text = " Red light violations: " + redLightViolations.ToString();
-        }
+        if (violationsText != null) violationsText.text = " Red light violations: " + redLightViolations;
     }
-    
+
     public void IncrementViolationCount()
     {
         redLightViolations++;

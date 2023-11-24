@@ -6,10 +6,6 @@ public class TurnRightCheckCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Car"))
-        {
-
-            manager.ColliderHit(gameObject.name);
-        }
+        if (other.CompareTag("Car")) manager.ColliderHit(gameObject.name);
     }
 }

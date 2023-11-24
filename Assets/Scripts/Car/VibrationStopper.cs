@@ -8,15 +8,18 @@ public class VibrationStopper : MonoBehaviour
     public int SpeedThroshould = 3;
     public int StepsBelowThreshold = 15;
     public int StepsAboveThreshold = 20;
+
     private WheelBase _wheelBase;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _wheelBase = GetComponent<WheelBase>();
         _wheelBase.ApplyToAll(ConfigSubsteps);
     }
-    void ConfigSubsteps(Wheel wheel)
+
+    private void ConfigSubsteps(Wheel wheel)
     {
-        wheel.Collider.ConfigureVehicleSubsteps(SpeedThroshould, StepsBelowThreshold, StepsAboveThreshold) ;
+        wheel.Collider.ConfigureVehicleSubsteps(SpeedThroshould, StepsBelowThreshold, StepsAboveThreshold);
     }
 }

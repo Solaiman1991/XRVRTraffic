@@ -1,26 +1,26 @@
 using Input;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WheelBaseManager : MonoBehaviour
 {
-    private IInputManager _inputManager;
-
     public Transform flDiscBrake, frDiscBrake;
 
-    private WheelBase _wheelBase;
-    
     [Header("This is the actual running speed of the car (KM/H)")]
-    public float speed = 0;
+    public float speed;
+
+    private IInputManager _inputManager;
+
+    private WheelBase _wheelBase;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _inputManager = GetComponent<IInputManager>();
         _wheelBase = GetComponent<WheelBase>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 
@@ -31,7 +31,7 @@ public class WheelBaseManager : MonoBehaviour
         _wheelBase.ApplyThrottle(_inputManager.GetThrottleInput());
         RotateWheel();
     }
-    
+
     private void RotateWheel()
     {
         // Front wheels (child objects)

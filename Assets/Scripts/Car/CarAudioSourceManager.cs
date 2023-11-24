@@ -1,18 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using Input;
+using UnityEngine;
 
 public class CarAudioSourceManager : MonoBehaviour
 {
-    private WheelBaseManager _wheelBase;
-    private IInputManager _inputManager;
-
-    [Header("Audio")] private AudioSource Audio_Runing;
     [SerializeField] private AudioClip startClip;
     [SerializeField] private AudioClip runClip;
     [SerializeField] private AudioClip stopClip;
     [SerializeField] private AudioClip gameOver;
-    bool isEngineRunning = false;
+    private IInputManager _inputManager;
+    private WheelBaseManager _wheelBase;
+
+    [Header("Audio")] private AudioSource Audio_Runing;
+    private bool isEngineRunning;
 
     private void Start()
     {
@@ -40,11 +40,8 @@ public class CarAudioSourceManager : MonoBehaviour
         Audio_Runing.Play();
     }
 
-   
-    
-    
 
-    IEnumerator StartEngineRoutine()
+    private IEnumerator StartEngineRoutine()
     {
         Audio_Runing.clip = startClip;
         Audio_Runing.volume = 0.3f;
@@ -58,7 +55,7 @@ public class CarAudioSourceManager : MonoBehaviour
         StartCoroutine(RunEngine());
     }
 
-    IEnumerator RunEngine()
+    private IEnumerator RunEngine()
     {
         Audio_Runing.clip = runClip;
         Audio_Runing.volume = 1f;
@@ -72,7 +69,7 @@ public class CarAudioSourceManager : MonoBehaviour
         }
     }
 
-    IEnumerator StopEngineRoutine()
+    private IEnumerator StopEngineRoutine()
     {
         Audio_Runing.clip = stopClip;
         Audio_Runing.volume = 1f;
@@ -84,5 +81,4 @@ public class CarAudioSourceManager : MonoBehaviour
 
         isEngineRunning = false;
     }
-    
 }

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TurnRightCheckManager : MonoBehaviour
 {
+    public static int failureCount;
     public ArrowBlinker arrowBlinker;
-    private bool firstColliderHit = false;
-    private bool secondColliderHit = false;
-    public static int failureCount = 0;
+    private bool firstColliderHit;
+    private bool secondColliderHit;
 
     public void ColliderHit(string colliderName)
     {
@@ -29,6 +29,7 @@ public class TurnRightCheckManager : MonoBehaviour
                 failureCount++;
                 Debug.LogWarning("Blinklys højre fejl count: " + failureCount);
             }
+
             ResetColliders();
         }
     }

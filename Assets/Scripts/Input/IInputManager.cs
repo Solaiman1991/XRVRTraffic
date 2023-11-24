@@ -11,11 +11,11 @@
         bool GetGearReverseInput();
         bool GetGearParkInput();
         bool GetGearNeutralInput();
-        
+
         bool GetLeftSignInput();
         bool GetRightSignInput();
         bool GetHavariSignInput();
-      
+
         bool GetStartEngineInput();
 
         bool GetRecenterInput();

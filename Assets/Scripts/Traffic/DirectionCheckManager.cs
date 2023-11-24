@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DirectionCheckManager : MonoBehaviour
 {
-    private bool collider1Hit = false;
-    private bool collider2Hit = false;
-    public static int wrongDirectionCount = 0;
+    public static int wrongDirectionCount;
     public GameObject WrongDirectionSign;
+    private bool collider1Hit;
+    private bool collider2Hit;
 
     public void ColliderHit(int colliderId)
     {
         if (colliderId == 1)
         {
-            if (collider2Hit) 
+            if (collider2Hit)
             {
                 wrongDirectionCount++;
                 WrongDirectionSign.SetActive(true);
@@ -23,11 +22,12 @@ public class DirectionCheckManager : MonoBehaviour
             {
                 WrongDirectionSign.SetActive(false);
             }
+
             ResetColliders();
         }
         else if (colliderId == 2)
         {
-            collider2Hit = true; 
+            collider2Hit = true;
         }
     }
 

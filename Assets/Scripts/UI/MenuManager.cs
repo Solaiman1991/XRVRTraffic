@@ -1,12 +1,10 @@
-using System.Collections;
 using Car;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 public class MenuManager : MonoBehaviour
 {
-    public ResetCar resetCar;
+    private ResetCar _resetCar;
     public CarAudioSourceManager CarAudioSource;
     public DrivingInstructorAudioManager Audio;
     public GameObject MainMenuStartButton;
@@ -16,13 +14,14 @@ public class MenuManager : MonoBehaviour
     public DrivingReportMenuController ResultMenu;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        _resetCar = GetComponentInParent<ResetCar>();
         SpawnMainMenu();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 
@@ -65,7 +64,7 @@ public class MenuManager : MonoBehaviour
 
     public void SpawnGameOverMenu()
     {
-        resetCar.ResetToInitial();
+        _resetCar.ResetToInitial();
         SpawnMenu(ResultMenu.gameObject);
         ResultMenu.SetGameOver();
         Audio.PlayGameOver();

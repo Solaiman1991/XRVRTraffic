@@ -6,16 +6,22 @@ public class RightOfWayControlller : MonoBehaviour
 {
     [SerializeField] private CarBlocker blockZone1, blockZone2;
     [SerializeField] private Transform centerPoint;
-    
-    private float _distanceTrackerThreshold = 20f;
     private GameObject _currentlyTracked;
+
+    private readonly float _distanceTrackerThreshold = 20f;
     private float _lastDistance = 50f;
-    private WaitForSeconds _wait = new(1);
+    private readonly WaitForSeconds _wait = new(1);
+
+    private void Update()
+    {
+        HandleTrackedCar();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("AI") && !other.CompareTag("Car")) return;
         if (!ShouldTrackCar(other.transform)) return;
-        
+
         _currentlyTracked = other.gameObject;
         EnableBlockers();
     }
@@ -25,7 +31,7 @@ public class RightOfWayControlller : MonoBehaviour
         blockZone1.BlockCars();
         blockZone2.BlockCars();
     }
-    
+
     private IEnumerator StartCars()
     {
         blockZone1.UnblockCars();
@@ -37,10 +43,6 @@ public class RightOfWayControlller : MonoBehaviour
     {
         var distance = Vector3.Distance(other.position, centerPoint.position);
         return distance > _distanceTrackerThreshold;
-    }
-    private void Update()
-    {
-        HandleTrackedCar();
     }
 
     private void StopTracking()
@@ -60,6 +62,7 @@ public class RightOfWayControlller : MonoBehaviour
             _lastDistance = currentDistance;
             return;
         }
+
         StopTracking();
     }
 }
