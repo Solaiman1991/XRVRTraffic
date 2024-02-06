@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f9a6a143cbd1f46865681b5c6e5e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuManager: {fileID: 0}
   _route: {fileID: 0}
   nodeDistanceThreshold: 2.5
   distanceToDest: 0
@@ -874,6 +875,7 @@ MonoBehaviour:
   throttleLerpTime: 1
   stopLerpTime: 0.5
   moveSpeed: 10
+  turnAngle: 45
 --- !u!1 &35078771129413429
 GameObject:
   m_ObjectHideFlags: 0

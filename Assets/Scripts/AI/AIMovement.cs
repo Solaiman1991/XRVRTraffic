@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIMovement : MonoBehaviour
@@ -11,6 +13,7 @@ public class AIMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 4f;
     private Rigidbody _rb;
     private Vector3 direction;
+    private bool _stopped = false;
 
     private void Awake()
     {
@@ -30,23 +33,49 @@ public class AIMovement : MonoBehaviour
 
     public void ForceStop()
     {
+        _stopped = true;
         throttle = 0;
     }
 
     public void StopCar()
     {
         StartCoroutine(LerpStop());
+        _stopped = true;
     }
 
     public void StartDriving()
     {
+        _stopped = false;
         StartCoroutine(LerpAccelerate(moveSpeed));
+        
     }
 
     private void Move()
     {
+        AngleToDestination();
         transform.Translate(Vector3.forward * (throttle * Time.deltaTime));
     }
+
+    private void AngleToDestination()
+    {
+        if (_stopped) return;
+        
+        Vector3 direction = (destination.position - transform.position).normalized;
+        
+        float angle = Vector3.Angle(transform.forward, direction);
+
+        if (angle > 15f)
+        {
+            throttle = moveSpeed / 2;
+        }
+        else
+        {
+            throttle = moveSpeed;
+        }
+
+    }
+
+
 
     private void Rotate()
     {

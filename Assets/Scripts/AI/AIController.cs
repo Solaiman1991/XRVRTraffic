@@ -65,7 +65,11 @@ namespace AI
         private void OnTriggerExit(Collider other)
         {
             if (carInFront == null) return;
-            if (other.name == carInFront.name) StartCar();
+            if (other.name == carInFront.name)
+            {
+                carInFront = null;
+                StartCar();
+            }
         }
 
         private void SetNewTargetPosition()
@@ -87,6 +91,8 @@ namespace AI
 
         public void StartCar()
         {
+            if (carInFront != null) return;
+            Debug.Log("CarInFron: " + carInFront);
             _movement.StartDriving();
         }
 
@@ -97,6 +103,7 @@ namespace AI
             transform.position = _initialPosition;
             _route.ResetRoute();
             currentNode = _route.GetCurrentNode();
+            _movement.SetDestination(_route.GetCurrentNode());
             yield return new WaitForSeconds(2f);
             _movement.StartDriving();
         }
