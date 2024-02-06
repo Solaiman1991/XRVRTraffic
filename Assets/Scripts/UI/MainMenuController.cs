@@ -10,6 +10,18 @@ public class MainMenuController : MonoBehaviour
     private void Start()
     {
         _menuManager = GetComponentInParent<MenuManager>();
+        InputManager.OnOptionsEvent += OpenMenu;
+    }
+
+
+
+    private void OnDisable()
+    {
+        InputManager.OnOptionsEvent -= OpenMenu;
+    }
+
+    private void OpenMenu() { 
+        _menuManager.SpawnMainMenu();
     }
 
     public void OnCityDrive()
@@ -28,5 +40,11 @@ public class MainMenuController : MonoBehaviour
     {
         _menuManager.CloseMainMenu();
         _routeManager.StartFreeRoam();
+    }
+
+
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
     }
 }

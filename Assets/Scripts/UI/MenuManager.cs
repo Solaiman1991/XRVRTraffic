@@ -1,6 +1,7 @@
 using Car;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Windows;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,7 +18,23 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         _resetCar = GetComponentInParent<ResetCar>();
+        InputManager.OnOptionsEvent += OnOptions;
         SpawnMainMenu();
+    }
+
+    private void OnDisable()
+    {
+        InputManager.OnOptionsEvent -= OnOptions;
+    }
+
+    private void OnOptions() {
+        if (MainMenu.activeSelf)
+        {
+            DeSpwanMenu(MainMenu);
+        }
+        else {
+            SpawnMainMenu();
+        }
     }
 
     // Update is called once per frame

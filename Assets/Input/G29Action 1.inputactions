@@ -1,5 +1,5 @@
 {
-    "name": "G29Action",
+    "name": "G29Action 1",
     "maps": [
         {
             "name": "Driving",
@@ -117,6 +117,15 @@
                     "name": "Recenter",
                     "type": "Button",
                     "id": "fbf28577-3109-4dce-82d7-6f57313f3b4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Options",
+                    "type": "Button",
+                    "id": "b592f9fc-3088-499f-84d7-20a092d498e0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -264,6 +273,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Recenter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8c5a030-c9c5-4b6c-b8e3-426c9f084bd3",
+                    "path": "<HID::Logitech G29 Driving Force Racing Wheel>/button25",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Options",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

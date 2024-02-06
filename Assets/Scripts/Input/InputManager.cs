@@ -1,4 +1,5 @@
 using Input;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool RightSign { get; private set; }
     public bool HavariSign { get; private set; }
     public bool Recenter { get; private set; }
+
+    public static event Action OnOptionsEvent;
 
 
     private void Start()
@@ -165,6 +168,7 @@ public class InputManager : MonoBehaviour, IInputManager
 
     private void OnLeftSign(InputValue value)
     {
+        Debug.Log("OnLeftSign");
         LeftSign = !LeftSign;
         if (arrowBlinker != null) arrowBlinker.ToggleLeftBlinking();
     }
@@ -184,5 +188,12 @@ public class InputManager : MonoBehaviour, IInputManager
     private void OnRecenter(InputValue value)
     {
         Recenter = true;
+    }
+
+    private void OnOptions(InputValue value) {
+        Debug.Log("OnOptions pressed");
+        if (OnOptionsEvent != null) {
+            OnOptionsEvent.Invoke();
+        }
     }
 }
